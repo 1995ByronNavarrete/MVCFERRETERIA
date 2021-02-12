@@ -1,0 +1,68 @@
+.buttons-html5{
+    background: #FFF;
+    border: none;
+}
+
+.buttons-html5:hover{
+    background: #fff;
+}
+/* Estilos del login */
+.fondo-login{
+    background: rgb(100, 100, 100);
+}
+
+.error{
+    font-size: 14px;
+    color: red;
+}
+
+/* Estilos para el modal de trabajador */
+.tituloTra{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.tituloTra span{
+    font-weight: normal;
+    font-size: 14px;
+}
+
+/* Estilos para los iconos de redes sociales */
+.redesSociales a span{
+    font-size: 25px;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.redesSociales a{
+    font-size: 16px;
+}
+
+.fa-facebook{
+    color:#FFF;
+    background-color: #3b5998;
+}
+
+.fa-twitter{
+    color:#FFF;
+    background-color: #00acee;
+}
+
+.fa-instagram{
+    background: linear-gradient(
+    to bottom right, rgba(81, 91, 212,.8),rgba(129, 52, 175,.8),
+                    rgba(221, 42, 123,.8),rgba(254, 218, 119,.8),
+                    rgba(245, 133, 41,.8));
+    color: #fff;
+}
+
+.fa-whatsapp{
+    color: #FFF;
+    background: rgb(20, 204, 51);
+}
+
+/* Servicio */
+.serDesc{
+    min-height: 100px;
+    max-height: 100px;
+}

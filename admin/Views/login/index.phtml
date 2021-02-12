@@ -1,0 +1,27 @@
+
+<div class="fondo-login min-vh-100 d-flex justify-content-center">
+        
+    <form action="" method="POST" id="form-login" class="form border w-25 h-25 my-auto p-5 bg-light shadow-lg rounded">
+        <h1 class="text-center mb-3 border-bottom p-2 font-weight-bold">Login</h1>
+        <input type="hidden" name="ingresar" value="1">
+
+        <div class="form-group">
+            <label for="password">Usuario</label>
+            <input type="text" name="usuario" id="usuario" class="my-1 form-control" required placeholder="Nombre de Usuario" autocomplete="off">
+        </div>
+
+        <label for="sucursal">Sucursal</label>
+        <select name="sucursal" id="sucursal" class="form-control">
+            <?= $this->sucursal ?>
+        </select>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="my-1 form-control" required placeholder="Contraseña">
+        </div>
+
+        <input type="submit" value="Login" class="btn btn-primary btn-block">
+        <?php if(isset($this->mensaje)) echo $this->mensaje; ?>
+    </form>
+
+</div>

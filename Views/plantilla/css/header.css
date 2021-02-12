@@ -1,0 +1,195 @@
+/*************************
+*******Header CSS******
+**************************/
+/**************************************************
+            header top
+***************************************************/
+
+.header_top {
+    background: none repeat scroll 0 0 #0a0a1e;
+}
+  
+.info_contacto ul li:first-child{
+    margin-left: -15px;
+}
+
+.info_contacto ul li a{
+    font-size: 12px;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.info_contacto ul li a:hover{
+    background:inherit;
+}
+
+
+.social-icons ul li a {   
+    border: 0 none;
+    border-radius: 0;
+    color: #ffffff;
+    padding:0px;
+    margin-top: 0px;
+}
+
+
+.social-icons ul li{
+    display:inline-block;
+}
+
+.social-icons ul li a i {
+    padding: 11px 15px;
+    transition: all 0.9s ease 0s;
+    -moz-transition: all 0.9s ease 0s;
+    -webkit-transition: all 0.9s ease 0s;
+    -o-transition: all 0.9s ease 0s;
+}
+
+.social-icons ul li a i:hover{
+    color: #fff;
+    transition: all 0.9s ease 0s;
+    -moz-transition: all 0.9s ease 0s;
+    -webkit-transition: all 0.9s ease 0s;
+    -o-transition: all 0.9s ease 0s;
+}
+
+
+.fa-facebook:hover {
+    background: #0083C9;
+}
+
+.fa-twitter:hover  {
+    background:#5BBCEC;
+}
+
+.fa-intagram:hover{
+    background: linear-gradient(
+        to bottom right, rgba(81, 91, 212,.8),rgba(129, 52, 175,.8),
+                        rgba(221, 42, 123,.8),rgba(254, 218, 119,.8),
+                        rgba(245, 133, 41,.8));
+}
+/**************************************************
+          fin  header top
+***************************************************/
+
+/**************************************************
+            header middle
+***************************************************/
+.header-middle .container .row img{
+    width: 130px;
+}
+.header-middle .container .row {
+    border-bottom: 1px solid #f5f5f5;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.header-middle .container .row .col-sm-4{
+    padding-left: 0;
+}
+
+.header-middle .container .row .col-sm-8 {
+    padding-right:0;
+}
+
+.menu_top ul li {
+    display:inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.menu_top ul li:last-child {
+    padding-right: 0;
+}
+
+
+.menu_top ul li a {
+    background: #FFFFFF;
+    color: #111d88;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    padding:0;
+    padding-right: 0;
+    margin-top: 10px;
+}
+
+
+.menu_top ul li a i{
+    margin-right:3px;
+}
+
+.menu_top ul li a:hover {
+    color:#12ce0b;
+    background:rgb(255, 255, 255);
+}
+
+/**************************************************
+          fin  header middle
+***************************************************/
+
+/**************************************************
+            header bottom
+***************************************************/
+.header-bottom {
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.navbar-collapse .collapse{
+    padding-right: 0;
+}
+
+.menu_principal ul li{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.menu_principal ul li:first-child{
+    padding-left: 0px;
+}
+
+.menu_principal ul li a {
+    color: #111d88;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding: 0;
+    padding-bottom: 10px;
+}
+
+.menu_principal ul li a:hover, .menu_principal ul li a.active,  .menu_top ul li a.active{
+    background:none;
+    color:#12ce0b;
+}
+
+.search_box input {
+background: #F0F0E9;
+border: medium none;
+color: #B2B2B2;
+font-family: 'roboto';
+font-size: 12px;
+font-weight: 300;
+height: 35px;
+outline: medium none;
+padding-left: 10px;
+width: 155px;
+background-image: url(../img/searchicon.png);
+background-repeat: no-repeat;
+background-position: 130px;
+}
+
+/* ESTILOS PROFORMA */
+.font-black{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.showPres{
+    display: none;
+    transition: 1s ease;
+}

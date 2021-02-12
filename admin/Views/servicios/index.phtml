@@ -1,0 +1,60 @@
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Servicios</h1>
+    <p class="mb-4">En este modulo se refleja los Servicios que ofrece la ferreteria.</p>
+    
+
+<div class="row d-flex justify-content-around">
+    <div class="col-md-3 p-2">
+        <form class="shadow p-2 addServicio" id="validarServicio">   
+            <h5 class="text-center bg-white p-2">Agregar Servicio</h5>
+            <div class="form-group p-2">
+                <input type="hidden" id="base" value="<?= BASE_URL?>">
+                <input type="hidden" value="<?= Accesos::getDatos('rol') ?>" id="acc">
+                
+                <div class="form-group">
+                  <label for="servicio">Servicio</label>
+                  <input type="text" name="servicio" id="servicio" placeholder="Servicio" class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <label for="descripcion">Descripcion</label>
+                  <textarea name="descripcion" id="serdescripcion" class="form-control serDesc" placeholder="Descripcion"></textarea>
+                </div>
+                
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Agregar" class="btn btn-primary btn-block">
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-8 shadow p-2">
+
+    <div class="card">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Todos</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="servicioDatos table table-bordered table-sm text-center text-gray-800 text-md nuevosProductos" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nombre Servicio</th>
+                      <th>Descripcion</th>
+                      <th class="no-exportar">Actualizar</th>
+                      <th class="no-exportar">Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <?= $this->allServices ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        
+    </div>
+</div>
+

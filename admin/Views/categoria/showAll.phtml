@@ -1,0 +1,36 @@
+
+          <!-- Page Heading -->
+        <div class="row">
+            <div class="col-md-9">
+                <h1 class="h3 mb-2 text-gray-800">Categoras</h1>
+            </div>
+        </div>
+          <p class="mb-4">En este modulo se refleja la informacion general de las Categorias del sistema.</p>
+    
+
+          <!-- Page Heading -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Categorias</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered text-center text-gray-800 text-md newCategorias" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nombre</th>
+                      <th>Descripcion</th>                  
+                      <th class="no-exportar">Actualizar</th>
+                      <th class="no-exportar">Eliminar</th>
+                    </tr>
+                  </thead>
+                  
+                  <tbody>
+                    <?= $this->contenido ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+       

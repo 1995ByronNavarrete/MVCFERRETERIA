@@ -1,0 +1,248 @@
+/*************************
+******* Home ******
+**************************/
+
+/************************************************
+****************** Slide *************************
+***************************************************/
+#slider {
+    padding-bottom: 45px;
+}
+  
+.carousel-indicators li {
+    background: #C4C4BE;
+}
+
+.carousel-indicators li.active {
+    background: #FE980F;
+}
+  
+.item {
+    padding-left: 100px;
+}
+
+  .item h1 {
+    color: #B4B1AB;
+    font-family: abel;
+    font-size: 48px;
+    margin-top: 115px;
+  }
+  
+  .item h1 span {
+      color:#FE980F;
+  }
+  
+  .item h2 {
+    color: #363432;
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 22px;
+    margin-top: 10px;
+  }
+  
+  .item  p {
+      color:#363432;
+      font-size:16px;
+      font-weight:300;
+      font-family: 'Roboto', sans-serif;
+  }
+  
+  .control-carousel {
+    position: absolute;
+    top: 50%;
+    font-size: 60px;
+    color: #C2C2C1;
+  }
+  
+  .control-carousel:hover{
+    color: #FE980F ;
+  }
+  
+  .right {
+    right: 0;
+  }
+  
+/************************************************
+****************** FIN Slide *************************
+***************************************************/
+
+
+/************************************************
+******************  productos  *************************
+***************************************************/
+  
+h2.title:before{
+    content: " ";
+    position: absolute;
+    background: #fff;
+    bottom: -6px;
+    width: 220px;
+    height: 30px;
+    z-index: -1;
+    left: 50%;
+    margin-left: -110px;
+}
+
+.padding-right {
+    padding-right: 0;
+}
+  
+.features_items{
+    overflow:hidden;
+}
+
+h2.title {
+    color: #FE980F;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 15px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    position: relative;
+}
+  
+.product-image-wrapper{
+    border:1px solid #F7F7F5; 
+    border-radius: 3%;
+    overflow: hidden;
+    margin-bottom:30px;
+    
+}
+  
+.single-products {
+    position: relative;
+}
+  
+.productinfo h2{
+    color: #FE980F;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+  
+.productinfo p{
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #696763;
+}
+  
+.productinfo img{
+    width: 100%;
+    height: 150px;
+}
+  
+  .productinfo{
+   position:relative;
+  }
+  
+.add-a-proforma {
+    background:#0a0a1e;
+    border: 0 none;
+    border-radius: 0;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+  
+.add-a-proforma:hover {
+    background: #0a0a1e;
+    border: 0 none;
+    border-radius: 0;
+    color: #FFFFFF;
+}
+
+.add-to{
+    margin-bottom: 10px;
+}
+
+.add-a-proforma i{
+    margin-right:5px;
+}
+
+.add-a-proforma:hover {
+    background: #14ca23;
+    color: #FFFFFF;
+}
+
+.detalle_product {
+    border-top: 1px solid #F7F7F0;
+}
+
+.detalle_product ul li a {
+    color: #1410f5c2;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    padding-left: 0;
+    padding-right: 0;
+    display: list-item;
+}
+
+.detalle_product ul li a i{
+    margin-right:5px;
+}
+
+.detalle_product ul li a:hover{
+    background:none;
+    color:#12ce0b;
+}
+  
+/************************************************
+****************** FIN  productos  *************************
+***************************************************/
+
+/************************************************
+****************** productos nuevos  *************************
+***************************************************/
+
+  .productos_nuevos {
+    overflow: hidden;
+  }
+  
+  .productos_nuevos ul {
+    background: #40403E;
+    border-bottom: 1px solid #FE980F;
+    list-style: none outside none;
+    margin: 0 0 30px;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .productos_nuevos ul li a {
+    border: 0 none;
+    border-radius: 0;
+    color: #B3AFA8;
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  
+  .productos_nuevos ul  li  a:hover{
+      background:#FE980F;
+      color:#fff;
+  }
+  
+  .nav-tabs  li.active  a, .nav-tabs  li.active  a:hover, .nav-tabs  li.active  a:focus {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #FE980F;
+    border:0px;
+    color: #FFFFFF;
+    cursor: default;
+    margin-right:0;
+    margin-left:0;
+  }
+  
+  .nav-tabs  li  a {
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px 4px 0 0;
+    line-height: 1.42857;
+    margin-right:0;
+  }
+  

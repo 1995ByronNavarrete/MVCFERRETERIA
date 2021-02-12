@@ -1,0 +1,74 @@
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Proveedores</h1>
+          <p class="mb-4">Listado con todos los proveedores de la empresa</a>.</p>
+
+        <div class="row">
+          <div class="col-md-4">
+            <form class="addProv bg-white shadow p-2" id="addProv">
+              <h5 class="border-bottom p-2">Agregar Proveedor</h5>
+              
+              <input type="hidden" id="base" value="<?= BASE_URL?>">
+              <div class="form-group">
+                <label for="nombreProv">Nombre</label>
+                <input type="text" name="nombreProv" id="nombreProv" class="form-control" placeholder="Nombre" required>
+              </div>
+
+              <div class="form-group">
+                <label for="direccionProv">Direccion</label>
+                <input type="text" name="direccionProv" id="direccionProv" class="form-control" placeholder="Direccion" required>
+              </div>
+
+              <div class="form-group">
+                <label for="telefonoProv">Telefono</label>
+                <input type="text" name="telefonoProv" id="telefonoProv" class="form-control" placeholder="Telefono" required>
+              </div>
+
+              <div class="form-group">
+                <select name="sucursalProv" id="sucursalProv" class="form-control chosen">
+                  <?= $this->sucursalProv ?>
+                </select> 
+              </div>
+
+              <div class="form-group">
+                <input type="submit" value="Agregar" class="btn-block btn btn-primary">
+              </div>
+            </form>
+          </div>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4 col-md-8">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Registros</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered text-center Proveedores" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Nombre</th>
+                      <th>Direccion</th>
+                      <th>Telefono</th>
+                      <th>Actualizar</th>
+                      <th>Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Id</th>
+                      <th>Nombre</th>
+                      <th>Direccion</th>
+                      <th>Telefono</th>
+                      <th>Actualizar</th>
+                      <th>Eliminar</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <?= $this->datos?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>

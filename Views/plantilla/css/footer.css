@@ -1,0 +1,147 @@
+/*************************
+*******Footer CSS******
+**************************/
+
+#footer {
+    background: #0a0a1e;
+  }
+  
+  
+.footer-top .container {
+    border-bottom: 1px solid #E0E0DA;
+    padding-bottom: 20px;
+}
+
+  
+  .info_negocio {
+    margin-top: 57px;
+  }
+  
+  .info_negocio h2 {
+    color: #B4B1AB;
+    font-family: abel;
+    font-size: 27px;
+    text-transform: uppercase;
+  }
+  
+  .info_negocio h2  span{
+    color:#FE980F;
+  }
+  
+  .info_negocio p {
+    color: #B3B3AD;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+  }
+  
+
+  
+  .footer-info {
+    margin-bottom: 20px;
+  }
+  
+  .footer-info .container {
+    border-top: 1px solid #FFFFFF;
+    padding-top: 15px;
+  }
+  
+  .col_info h2 {
+    color: #666663;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+  }
+  
+  .col_info h2 i{
+      margin-right:15px;
+  }
+  
+  .col_info ul li a{
+      color: #8C8C88;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      padding: 5px 0;
+  }
+  
+  .col_info ul li a:hover{
+      background:none;
+      color:#12ce0b;
+  }
+  
+  
+  .searchform input {
+    border: 1px solid #DDDDDD;
+    background: #dddddd00;
+    color: #CCCCC6;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    margin-top: 0;
+    outline: medium none;
+    padding: 7px;
+    width: 211px;
+    border-radius: 10px;
+  }
+
+ 
+
+  .searchform textarea {
+    border: 1px solid #DDDDDD;
+    background: #dddddd00;
+    color: #CCCCC6;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    margin-top: 10px;
+    outline: medium none;
+    padding: 7px;
+    width: 211px;
+    border-radius: 10px;
+  }
+  
+  
+  .searchform button {
+    background: #56ff08bd;
+    border: medium none;
+    border-radius: 5px;
+    margin-top: 10px ;
+    width: 211px;
+  }
+
+  .searchform button:hover{
+    background: #56ff08e3;
+  }
+
+  
+  .searchform button i {
+    color: #FFFFFF;
+    font-size: 21px;
+  }
+  
+  
+  
+  .searchform p {
+    color: #8C8C88;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 25px;
+  }
+  
+  .footer-bottom {
+    background: #D6D6D0;
+    padding-top: 10px;
+  }
+  
+  .footer-bottom p {
+    color: #363432;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    margin-left: 15px;
+  }
+  
+  .footer-bottom p span {
+    color: #FE980F;
+  }
