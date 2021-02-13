@@ -1,6 +1,7 @@
 const base = document.getElementById('base').getAttribute('value'),
 fotoAdmin = document.getElementById('fotosAdmin').getAttribute('value'),
-accesoSistema = document.getElementById('accesoSistema').getAttribute('value');
+accesoSistema = document.getElementById('accesoSistema').getAttribute('value'),
+clienteId = document.getElementById('clienteId').getAttribute('value');
 
 let DB= [],
     copy = [],
@@ -65,16 +66,23 @@ $(document).ready(function(){
     //Primera Ejecucion
     getProductos();
 
-    $('#proformaOcultar').hide();
+    // validamos la proforma para el acceso del sistema
+    if(!accesoSistema) $('#proformaOcultar').hide();
+    else $('#proformaOcultar').show();
+
+    // Si no se ha registrado no podra agregar productos a la proforma
     $('.loginEntrar').on("click", () => swal.fire("Ingrese al sistema para poder agregar productos","","info"));
 
+    //Creamos una variable de localStorage para almacenar los registros de los productos
     if(!localStorage.getItem('proforma')){localStorage.setItem('proforma','[]');}
     getCarrito = JSON.parse(localStorage.getItem('proforma'));
 
+    //si encontramos productos en la localStorage la agregamos al la proforma
     if(getCarrito) getCarrito.forEach(elm => elm.forEach(el => {
         carrito.push(el['product_ID']);
     }))
 
+    //al agregar productos a la proforma
     $(document).on("click", ".add", function(e){
         e.preventDefault();
         carrito.push(this.getAttribute('marcador'));
@@ -84,6 +92,7 @@ $(document).ready(function(){
         $badge.innerHTML = countProduct();
     });
 
+    //para vaciar la proforma
     $botonVaciar.addEventListener('click',function(){
         Swal.fire({
             title: '¿Desea eliminar todos los elementos de la proforma?',
@@ -105,31 +114,47 @@ $(document).ready(function(){
         })
     })
 
+    //ocultar la proforma y mostrarla
     $('.proformaToggle').on('click', function(){
         $('.Mostraocultar').toggle("slow");
     });
- 
+    
+    //alamcenamos la cantidad de elementos que se han agregado a la proforma y los mostramos
     $badge.innerHTML = countProduct();
     calcularTotal();
     renderizarProforma();
 
+    // al imprimirlo almacenarlo en la base de datos para recuperar los productos
     $("#imprimir").on('click', function(){
         let datos = JSON.parse($(this).attr('data-datos'));
-        let imprimirPDF = [];
+        let imprimirPDF = [], idCliente = $("#clienteId").val();
         
         for (const item of datos) {
             let newElement = DB.filter(el => el['product_ID'] == item);
             imprimirPDF.push(newElement[0])
         }
+  
+        $.ajax({
+            url: base + "producto/save",
+            type: "POST",
+            data: {imprimirPDF,clienteId},
+            success: function(response){
+                console.log("GOOD JOB");
+                localStorage.clear();
+                location.href = base + "home";
+            }
+        });
 
-        window.open(base + "Views/plantilla/tcpdf/pdf/factura.php","imprimir"); 
+        window.open(base + `Views/plantilla/tcpdf/pdf/factura.php`,"imprimir"); 
        
     })
 
 });
 
+//funcion para contar los productos agregados a a proforma
 function countProduct(){ return carrito.length; }
 
+//calcula el precio total de los productos
 function calcularTotal(){
     total = 0;
     localStorage.setItem("proforma",'[]');
@@ -151,6 +176,7 @@ function calcularTotal(){
 
 }
 
+//muestra y crea los elementos que se mostraran en la proforma
 function renderizarProforma(){
     $carrito.textContent = '';
     let proformaDuplicado = [...new Set(carrito)];
@@ -183,7 +209,7 @@ function renderizarProforma(){
     btnImprimir.setAttribute('data-datos',JSON.stringify(carrito));
 }
 
-
+//borra elementos de la proforma 
 function borrarItemCarrito() {
     Swal.fire({
         title: '¿Desea eliminar el elemento de la proforma?',

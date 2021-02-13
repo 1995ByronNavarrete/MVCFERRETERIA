@@ -37,4 +37,16 @@
             $product->execute(['id' => $id]);
             return $product->fetch();
         }
+
+        public function getSucursal(){
+            return $this->_db->query("SELECT sucursal_id FROM sucursal WHERE activo = 1")->fetch();
+        }
+
+        public function saveAll($datos){
+            $datosFinales = json_encode($datos['imprimirPDF']);
+            $this->_db->prepare("INSERT INTO proforma(proforma_productos,fk_cliente) VALUES(:pro,:fk)")->execute(array(
+                "pro" => $datosFinales,
+                "fk" => $datos['clienteId']
+            ));
+        }
     }

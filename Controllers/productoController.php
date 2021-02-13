@@ -141,4 +141,8 @@
 
             return $template;
         }
+
+        public function save(){
+            $this->modelProduct->saveAll($_POST);
+        }
     }

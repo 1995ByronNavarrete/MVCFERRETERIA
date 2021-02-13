@@ -34,6 +34,7 @@
 <input type="hidden" id="base" value="<?= BASE_URL ?>">
 <input type="hidden" id="fotosAdmin" value="<?= PLANTILLAFOTO ?>">
 <input type="hidden" id="accesoSistema" value="<?= Accesos::getDatos('acceso') ?>">
+<input type="hidden" id="clienteId" value="<?= Accesos::getDatos('cliente')['cliente_id'] ?>">
 <header><!--header-->
 		<div class="header_top"><!--header_top-->
 			<div class="container">

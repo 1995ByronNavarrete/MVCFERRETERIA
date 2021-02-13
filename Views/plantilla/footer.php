@@ -76,9 +76,12 @@
 
 <!-- Bootstrap core JavaScript-->
 <script src="<?= PLANTILLA ?>js/jquery.js"></script>
-<script src="<?= PLANTILLA ?>js/main.js"></script>
+<script src="<?= PLANTILLA ?>js/elementos_proforma.js"></script>
 <script src="<?= PLANTILLA ?>js/bootstrap.min.js"></script>
 <script src="<?= PLANTILLA?>js/imprimir.js"></script>
+
+<script src="<?= PLANTILLA?>js/jquery.validate.min.js"></script>
+<script src="<?= PLANTILLA?>js/validaciones.js" type="module"></script>
 
 
 

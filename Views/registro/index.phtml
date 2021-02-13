@@ -1,47 +1,52 @@
-<div class="container-fluid" style="height: 75vh">
+<div class="container-fluid" style="height: 100vh">
     <h2 class="col-md-12 text-center">New User Signup!</h2>
     <div class="col-md-12">
-        <form class="border form-style row" style="width:60%;margin:auto">
+        <form method="POST" class="border form-style row" style="width:60%;margin:auto" id="createNewUsuario">
 			<div class="col-md-6">
 			<div class="form-group">
-					<label for="createNombres">Nombres</label>
-					<input type="text" class="form-control" placeholder="Nombres" required>
+					<label for="createNombres">Nombres*</label>
+					<input type="text" class="form-control" id="createNombres" name="createNombres" placeholder="Nombres">
 				</div>
 				<div class="form-group">
-					<label for="createApellidos">Apellidos</label>
-					<input type="text" class="form-control" placeholder="Apellidos" required>
+					<label for="createApellidos">Apellidos*</label>
+					<input type="text" class="form-control" id="createApellidos" name="createApellidos" placeholder="Apellidos" required>
 				</div>
 				<div class="form-group">
-					<label for="createTelefono">Telefono</label>
-					<input type="text" class="form-control" placeholder="Telefono" required>
+					<label for="createTelefono" id="errTel">Telefono*</label>
+					<input type="text" class="form-control" id="createTelefono" name="createTelefono" placeholder="Telefono example(87654321)" required autocomplete="off">
 				</div>
 				<div class="form-group">
-					<label for="createDireccion">Dirección</label>
-					<input type="text" class="form-control" placeholder="Direccion" required>
+					<label for="createDireccion">Dirección*</label>
+					<input type="text" class="form-control" id="createDireccion" name="createDireccion" placeholder="Direccion" required autocomplete="off">
 				</div>
 			</div>
 
 			<div class="col-md-6">
 				<div class="form-group">
-					<label for="createCedula">Cedula</label>
-					<input type="text" class="form-control" placeholder="Cedula" required>
+					<label for="createCedula" id="errCed">Cedula*</label>
+					<input type="text" class="form-control" id="createCedula" name="createCedula" placeholder="Cedula example(321-000000-0001A)" required autocomplete="off">
 				</div>
 				<div class="form-group">
-					<label for="createNombreUsuario">Nombre de usuario</label>
-					<input type="text" class="form-control" placeholder="Nombre de usuario" required>
+					<label for="createNombreUsuario" id="errNomUsu">Nombre de usuario*</label>
+					<input type="text" class="form-control" id="createUsuario" name="createUsuario" placeholder="Nombre de usuario" required autocomplete="off">
 				</div>
 				<div class="form-group">
-					<label for="createCorreo">Correo</label>
-					<input type="email" class="form-control" placeholder="Correo" required>
+					<label for="createCorreo" id="errCor">Correo*</label>
+					<input type="email" class="form-control" id="createCorreo" name="createCorreo" placeholder="Correo" required autocomplete="off">
 				</div>
 				<div class="form-group">
-					<label for="createPassword">Contraseña</label>
-					<input type="password" class="form-control" placeholder="Contraseña" required>
+					<label for="createPassword">Contraseña*</label>
+					<input type="password" class="form-control" id="createPassword" name="createPassword" placeholder="Contraseña" required autocomplete="off">
+				</div>
+
+				<div class="form-group">
+					<label for="createPassword2">Repetir Contraseña*</label>
+					<input type="password" class="form-control" id="createPassword2" name="createPassword2" placeholder="Contraseña" required>
 				</div>
 			</div>
 				
 			<div class="form-group col-md-12">
-				<button type="submit" class="btn btn-default">Crear cuenta</button>
+				<button type="submit" class="btn btn-default" id="createUser">Crear cuenta</button>
 			</div>
         </form>
     </div>

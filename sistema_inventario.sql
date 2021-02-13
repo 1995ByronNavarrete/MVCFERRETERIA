@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 12-02-2021 a las 01:07:22
+-- Tiempo de generación: 13-02-2021 a las 14:59:10
 -- Versión del servidor: 10.5.4-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `roles_rol_ID` tinyint(1) UNSIGNED NOT NULL,
   PRIMARY KEY (`admin_ID`,`roles_rol_ID`),
   KEY `fk_admin_roles1_idx` (`roles_rol_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `admin`
@@ -48,7 +48,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 INSERT INTO `admin` (`admin_ID`, `admin_nombre`, `admin_apellido`, `admin_usuario`, `admin_direccion`, `admin_telefono`, `admin_correo`, `admin_pass`, `roles_rol_ID`) VALUES
 (1, 'Byron', 'Navarrete', 'BayNavCan', 'Somoto', '+505 8736-4374', 'navarretebay74@gmail.com', '$2y$10$MFnUkg8FHvdweL8VFuq8..as2CLKQH9HVnDNKVapUIlfv8.kiLcEe', 1),
-(2, 'Angel', 'Navarrete', 'AngNavCan', 'Somoto', '+505 8765-4321', 'idashlevel@gmail.com', '$2y$10$EDORcOWofk2Rbn024jcgROuPypIYc6BJKFAapq.ln5I3Frrt2CHza', 1);
+(2, 'Angel', 'Navarrete', 'AngNavCan', 'Somoto', '+505 8765-4321', 'idashlevel@gmail.com', '$2y$10$EDORcOWofk2Rbn024jcgROuPypIYc6BJKFAapq.ln5I3Frrt2CHza', 1),
+(3, 'Kevin', 'Jimenez', 'KevJimMen', 'Somoto', '+505 8767-5421', 'KevinJimenez@gmail.com', '$2y$10$KltfPwB.qQDV5FVEWnn14epIADSgoZ.RW821QZIfZu1.dmczmI8du', 2);
 
 -- --------------------------------------------------------
 
@@ -69,16 +70,9 @@ CREATE TABLE IF NOT EXISTS `admin_sucursal` (
 --
 
 INSERT INTO `admin_sucursal` (`fk_sucursal`, `fk_admin`) VALUES
-(1, 3),
-(1, 4),
-(2, 5),
-(2, 6),
-(2, 8),
-(2, 11),
-(2, 12),
-(1, 13),
 (1, 1),
-(2, 2);
+(1, 2),
+(1, 3);
 
 -- --------------------------------------------------------
 
@@ -123,8 +117,17 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `cliente_direccion` varchar(100) DEFAULT NULL,
   `cliente_correo` varchar(50) NOT NULL,
   `cliente_password` text NOT NULL DEFAULT '',
-  PRIMARY KEY (`cliente_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `fk_sucursal_cliente` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`cliente_id`),
+  KEY `fk_sucursal_cliente` (`fk_sucursal_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`cliente_id`, `cliente_cedula`, `cliente_nombres`, `cliente_apellidos`, `cliente_username`, `cliente_telefono`, `cliente_direccion`, `cliente_correo`, `cliente_password`, `fk_sucursal_cliente`) VALUES
+(22, '321-030995-0001H', 'Byron', 'Navarrete', 'BayNavCan', '87364374', 'Somoto', 'navarretebay74@gmail.com', '$2y$10$4ZdyJcfP/kXDT6KgubUyHO6/ABOCUBfT/7afPLUWWlfYma3ehogVm', 1);
 
 -- --------------------------------------------------------
 
@@ -200,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   KEY `fk_productos_categorias_productos_idx` (`categorias_productos_cat_product_ID`),
   KEY `fk_productos_unidad_medida1_idx` (`unidad_medida_unidad_medida_id`),
   KEY `fk_productos_proveedores1_idx` (`proveedores_provee_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `productos`
@@ -212,7 +215,23 @@ INSERT INTO `productos` (`product_ID`, `product_nombre`, `product_cantidad`, `pr
 (4, 'Cierra', 20, '500.00', 'Cierra para madera marca truper', '2111._631.jpeg', 6, 1, 1),
 (5, 'Clavos de Acero', 100, '15.00', 'Clavos de Acero de 1 pulgada', '1063._492.jpeg', 2, 1, 1),
 (6, 'Sierra', 20, '120.00', 'Sierra para tubos pvc', '8864._791.jpeg', 10, 1, 1),
-(7, 'Alfajilla', 30, '250.00', 'alfajilla de 4*4', '17911_160.jpeg', 1, 1, 1);
+(7, 'Alfajilla', 30, '250.00', 'alfajilla de 4*4', '17911_160.jpeg', 1, 1, 1),
+(8, 'Arena', 100, '500.00', 'Arena fina para fino', '604ca_263.jpeg', 6, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `proforma`
+--
+
+DROP TABLE IF EXISTS `proforma`;
+CREATE TABLE IF NOT EXISTS `proforma` (
+  `proforma_id` int(11) NOT NULL AUTO_INCREMENT,
+  `proforma_productos` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fk_cliente` int(11) UNSIGNED NOT NULL,
+  PRIMARY KEY (`proforma_id`),
+  KEY `fk_cliente` (`fk_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -319,6 +338,7 @@ CREATE TABLE IF NOT EXISTS `sucursal` (
   `sucursal_nombre` varchar(100) NOT NULL,
   `sucursal_telefono` varchar(20) NOT NULL,
   `sucursal_correo` varchar(100) NOT NULL,
+  `sucursal_direccion` varchar(255) DEFAULT NULL,
   `activo` tinyint(4) DEFAULT 0,
   PRIMARY KEY (`sucursal_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -327,9 +347,9 @@ CREATE TABLE IF NOT EXISTS `sucursal` (
 -- Volcado de datos para la tabla `sucursal`
 --
 
-INSERT INTO `sucursal` (`sucursal_ID`, `sucursal_nombre`, `sucursal_telefono`, `sucursal_correo`, `activo`) VALUES
-(1, 'Ferreteria San Luis', '87654321', 'SanLuis@gmail.com', 1),
-(2, 'Ferreteria Divino niño', '87654321', 'Divina@gmail.com', 0);
+INSERT INTO `sucursal` (`sucursal_ID`, `sucursal_nombre`, `sucursal_telefono`, `sucursal_correo`, `sucursal_direccion`, `activo`) VALUES
+(1, 'Ferreteria San Luis', '87654321', 'SanLuis@gmail.com', 'Somoto, de enitel 1 C. al Norte', 1),
+(2, 'Ferreteria Divino niño', '87654321', 'Divina@gmail.com', 'Ocotal', 0);
 
 -- --------------------------------------------------------
 
@@ -372,6 +392,12 @@ ALTER TABLE `admin_sucursal`
   ADD CONSTRAINT `fk_sucursal` FOREIGN KEY (`fk_sucursal`) REFERENCES `sucursal` (`sucursal_ID`);
 
 --
+-- Filtros para la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  ADD CONSTRAINT `fk_sucursal_cliente` FOREIGN KEY (`fk_sucursal_cliente`) REFERENCES `sucursal` (`sucursal_ID`);
+
+--
 -- Filtros para la tabla `detallefactura`
 --
 ALTER TABLE `detallefactura`
@@ -398,6 +424,12 @@ ALTER TABLE `productos`
   ADD CONSTRAINT `fk_productos_categorias_productos` FOREIGN KEY (`categorias_productos_cat_product_ID`) REFERENCES `categorias_productos` (`cat_product_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_productos_proveedores1` FOREIGN KEY (`proveedores_provee_ID`) REFERENCES `proveedores` (`provee_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_productos_unidad_medida1` FOREIGN KEY (`unidad_medida_unidad_medida_id`) REFERENCES `unidad_medida` (`unidad_medida_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `proforma`
+--
+ALTER TABLE `proforma`
+  ADD CONSTRAINT `fk_cliente` FOREIGN KEY (`fk_cliente`) REFERENCES `cliente` (`cliente_id`);
 
 --
 -- Filtros para la tabla `proveedores`
