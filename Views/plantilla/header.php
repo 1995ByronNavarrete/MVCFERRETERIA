@@ -44,6 +44,9 @@
 							<ul class="nav nav-pills">
 								<li><a href="#"><i class="fa fa-phone"></i> +505 5874-5142</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i> email@gmail.com</a></li>
+								<?php if(Accesos::getDatos('acceso')):?>
+								<li><a href="<?=BASE_URL?>login/salir"><i class="fa fa-door-closed"></i> Cerrar Sesion</a></li>
+								<?php endif; ?>
 							</ul>
 						</div>
 					</div>

@@ -26,52 +26,82 @@ FROM sucursal AS s INNER JOIN cliente AS c ON s.sucursal_ID = c.fk_sucursal_clie
      INNER JOIN proforma AS p ON c.cliente_id = p.fk_cliente
 WHERE c.cliente_id = :id ORDER BY p.proforma_id DESC LIMIT 1");
 
+//IRFORMACION QUE SE TRAE DESDE LA BASE DE DATOS
 $facturaFinal->execute(['id' => $idCliente]);
 $datos = $facturaFinal->fetch();
+
+// INFORMACION QUE BIENE DESDE EL SITI WEB
 $coleccion = json_decode($datos['proforma_productos']);
-$coleccion2 = [];
-$coleccion3 = $coleccion;
-$coleccion4 = $coleccion;
-$idMayor = '';
+$comprobar = [];
+$controNoencotro = false;
 
 
-
-foreach($coleccion AS $c){
-
+for($i = 0; $i < count($coleccion); $i++){ //RECORREMOS LA LISTA DE PRODUCTOS
 	$total = 0;
-	$idTemp = "";
-	$idTempOne = "";
 
-	if($idMayor == $c->product_ID){continue; $idMayor = "";}
-	else{
-	
-		foreach($coleccion3 AS $c3){
-			if($c->product_ID == $c3->product_ID){
-				$total += 1;
-
-				if($total == 1) $idTempOne = $c->product_ID;
-				else if($total >= 2){
-					$idTemp = $c->product_ID;
-					$idMayor = $c->product_ID;
-				}
-
-			}else{
-				$total;
-			}
+	for($j = 0; $j < count($coleccion); $j++){ //REALIZAMOS UN CONTEO INDIVIDUAL
+		if($coleccion[$i] == $coleccion[$j]){
+			$total += 1;
 		}
+	}	
 
-		
-		foreach($coleccion4 AS $c4){
-			if($c4->product_ID == $idTempOne){
-				array_push($coleccion2, array("total" => $total, "product" => $c4));
-				break;
-			}else if($c4->product_ID == $idTemp){
-				array_push($coleccion2, array("total" => $total, "product" => $c4));
-				break;
+	if($total == 1){//VERIFICAMOS QUE SOLO SE ENCONTRO UN ELEMENTO SIN REPETICIONES
+		array_push($comprobar,array("id" =>  $coleccion[$id]->product_ID, "total" => $total,"product" => $coleccion[$i]));
+	}
+
+	if($total >= 2){//SI HAY MAS DE DOS ELEMENTOS
+		if(!$comprobar){//AGREGAR EL PRIMER ELEMENTOS A LA LISTA VACIA
+			array_push($comprobar,array("id" =>  $coleccion[$i]->product_ID, "total" => $total,"product" => $coleccion[$i]));
+		}else{//EN CASO DE QUE LALISTA TENGA UN REGISTRO 
+			for($k = 0; $k <count($comprobar); $k++){//COMPROBAR QUE EL ELEMENTO A AGREGAR NO EXISTA EL LA LISTA
+				$controNoencotro = false;//SI NO EXISTE 
+
+				if($coleccion[$i]->product_ID == $comprobar[$k]['id']){//SI EXISTE
+					$controNoencotro = true;
+					break;
+				}
 			}
+
+			if(!$controNoencotro){//EN CASO DE NO EXISTIR LO AGREGAMOS DE LO CONTRARIO NO LO AGREGAMOS
+				array_push($comprobar,array("id" =>  $coleccion[$i]->product_ID, "total" => $total,"product" => $coleccion[$i]));
+			};
+
 		}
 	}
 }
+
+// $nuevo = json_encode($coleccion);
+// echo"<script>
+// 	let reg = ".$nuevo.";
+// 	const itemsFinal = [];
+
+// 	let nuevoElem = [];
+// 	reg.forEach(e => nuevoElem.push(e.product_ID));
+// 	nuevoElem = new Set(nuevoElem);
+// 	let final = [];
+	
+// 	for (const item of nuevoElem) {
+// 		final.push(item);
+// 	}
+
+// 	final.forEach(e => {
+// 		let cont = 0;
+
+// 		reg.forEach(item => {
+// 			if(e === item.product_ID) cont+=1;
+			
+// 		})
+
+// 		for(let i = 0; i < reg.length - 1; i++){
+// 			if(e  === reg[i].product_ID){
+// 				itemsFinal.push({total: cont, Product: reg[i]})
+// 				break;
+// 			}
+// 		}
+// 	})
+
+// 	console.log(itemsFinal)
+// </script>";
 
 //REQUERIMOS LA CLASE TCPDF
 require_once('tcpdf_include.php');
@@ -162,7 +192,7 @@ $html .= '<table style="font-size:10px; padding:5px 10px;">';
 
 $totalGeneral = 0.0;
 
-foreach($coleccion2 AS $c2){
+foreach($comprobar AS $c2){
 
 	$totalGeneral += $c2['total'] * $c2['product']->product_precio;
 
@@ -250,4 +280,3 @@ $pdf->writeHTML($html, true, false, false, false, '');
 ob_end_clean();
 $pdf->Output('Proforma.pdf');
 
-?>

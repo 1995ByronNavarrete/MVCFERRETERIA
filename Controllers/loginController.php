@@ -16,6 +16,14 @@
                     Accesos::setDatos('acceso',true);
                     Accesos::setDatos('cliente',$cliente);
                     $this->redireccionar('home');
+                }else{
+                    $this->_view->errLog = "
+                        <div class='alert alert-danger alert-dismissable'>
+                            <button type='button' class='close' data-dismiss='alert'>
+                                &times;
+                            </button>
+                            <strong>Error!</strong> Correo y/o Password Incorrecto
+                        </div>";
                 }
             }
 

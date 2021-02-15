@@ -14,14 +14,16 @@ $("#createNewUsuario").validate
         createTelefono:{
            required: true,
            number:true,
-           minlength: 8
+           minlength: 8,
+           maxlength:8
         },
         createDireccion:{
            required: true
         },
         createCedula:{
            required: true,
-           minlength: 16
+           minlength: 16,
+           maxlength:16
         },
         createUsuario:{
            required: true
@@ -48,13 +50,15 @@ $("#createNewUsuario").validate
             required: "<p class='text-danger'>El campo es requerido</p>",
             number: "<p class='text-danger'>Ingrese un numero valido</p>",
             minlength: "<p class='text-danger'>como minimo 8 digitos</p>",
+            maxlength: "<p class='text-danger'>como maximo 8 digitos</p>"
          },
          createDireccion:{
             required: "<p class='text-danger'>El campo es requerido</p>"
          },
          createCedula:{
             required: "<p class='text-danger'>El campo es requerido</p>",
-            minlength: "<p class='text-danger'>Como maximo 16 caraceres usando (-)</p>",
+            minlength: "<p class='text-danger'>Como minimo 16 caraceres usando (-)</p>",
+            maxlength: "<p class='text-danger'>como maximo 16 digitos</p>"
          },
          createUsuario:{
             required: "<p class='text-danger'>El campo es requerido</p>"
@@ -72,6 +76,29 @@ $("#createNewUsuario").validate
     }
 });
 
+//Validar Login
+// Validar Formulario registro
+$("#loginUserPublic").validate
+({
+    rules:{
+         loginClienteUser:{
+           required: true
+         },
+         loginClientePass:{
+            required: true
+         }
+    },
+    messages:{
+         loginClienteUser:{
+            required: "<p class='text-danger'>El campo es requerido</p>"
+         },
+         loginClientePass:{
+            required: "<p class='text-danger'>El campo es requerido</p>"
+         }
+    }
+});
+
+
 
 $(document).ready(function(){
    // Validacion de los elementos que no se pueden repetir
@@ -82,7 +109,7 @@ $(document).ready(function(){
 
    //si pasa las validaciones al hacer submit permitimos el envio de los datos
    $("#createNewUsuario").on("submit", function(e){
-      if(!registrar.correo && !registrar.nombreUsuario) return false;
+      if(!registrar.correo && !registrar.nombreUsuario && !registrar.cedula && !registrar.telefono) return false;
       return true;
    })
    

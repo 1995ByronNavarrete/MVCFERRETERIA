@@ -140,7 +140,7 @@ $(document).ready(function(){
             data: {imprimirPDF,clienteId},
             success: function(response){
                 console.log("GOOD JOB");
-                localStorage.clear();
+                // localStorage.clear();
                 location.href = base + "home";
             }
         });
