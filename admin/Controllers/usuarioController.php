@@ -77,10 +77,7 @@
                 "telTra" => $this->getTexto("telefono")
             );
 
-            $this->mUsu->agregarUsuario($userData);
-
-            $datos = $this->mUsu->getNewTra();
-            $this->mUsu->addSucursalTra($datos[0]['admin_ID'],Accesos::getDatos('identificadorSuc'));
+            $this->mUsu->agregarUsuario($userData,Accesos::getDatos('identificadorSuc'));
 
             echo $this->getUser();
         }
@@ -104,7 +101,6 @@
         }
 
         public function eliminar(){
-            $this->mUsu->elimTraSuc($this->getTexto('eliminar'));
             $this->mUsu->elimTra($this->getTexto('eliminar'));
             echo $this->getUser();
         }

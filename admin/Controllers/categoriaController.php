@@ -87,12 +87,8 @@ class categoriaController extends Controller{
         return $table;
     }
 
-    public function update(){
-        $this->catMod->updCat(array(
-            "id" => $this->getTexto('id'),
-            "nombre" => $this->getTexto('nombre'),
-            "descripcion" => $this->getTexto('descripcion'),
-        ));
+    public function actualizar(){
+        $this->catMod->actualizarCat($_POST);
 
         echo $this->generarCategorias();
     }

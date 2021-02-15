@@ -23,9 +23,9 @@
             return $fila;
         }
 
-        public function agregarUsuario(array $datos)
+        public function agregarUsuario(array $datos, $sucursal)
         {
-            $this->_db->prepare("INSERT INTO admin(admin_nombre, admin_apellido, admin_usuario, admin_direccion, admin_telefono, admin_correo, admin_pass, roles_rol_ID) VALUES (:nom,:ape,:nUs,:dir,:tel,:cor,:pas,:rol)")->execute([
+            $this->_db->prepare("INSERT INTO admin(admin_nombre, admin_apellido, admin_usuario, admin_direccion, admin_telefono, admin_correo, admin_pass, roles_rol_ID,sucursal_sucursal_ID) VALUES (:nom,:ape,:nUs,:dir,:tel,:cor,:pas,:rol,:ssI)")->execute([
                 "nom" => $datos['nomTra'],
                 "ape" => $datos['apeTra'],
                 "nUs" => $datos['nUsTra'],
@@ -33,7 +33,8 @@
                 "pas" => $datos['conTra'],
                 "rol" => $datos['rolTra'],
                 "dir" => $datos['dirTra'],
-                "tel" => $datos['telTra']
+                "tel" => $datos['telTra'],
+                "ssI" => $sucursal  
             ]);
         }
 
@@ -54,17 +55,13 @@
         public function getTrabajadores($id_sucursal)
         {
             $tra =  $this->_db->prepare("SELECT a.*,s.*,r.*
-            FROM admin AS a INNER JOIN admin_sucursal AS ad ON a.admin_ID = ad.fk_admin
-                  INNER JOIN sucursal AS s ON s.sucursal_ID = ad.fk_sucursal INNER JOIN
-                  roles AS r ON a.roles_rol_ID = r.rol_ID
-            WHERE s.sucursal_ID = :id AND r.rol_ID <> 1");
+            FROM admin AS a INNER JOIN sucursal AS s ON a.sucursal_sucursal_ID = s.sucursal_ID
+                    INNER JOIN roles AS r ON a.roles_rol_ID = r.rol_ID
+            WHERE a.sucursal_sucursal_ID = :id AND r.rol_ID <> 1");
             $tra->execute(['id' => $id_sucursal]);
             return $tra->fetchAll(PDO::FETCH_OBJ);
         }
 
-        public function elimTraSuc($elim){
-            $this->_db->prepare("DELETE FROM admin_sucursal WHERE fk_admin = :id")->execute(['id' => $elim]);
-        }
 
         public function elimTra($elim){
             $this->_db->prepare("DELETE FROM admin WHERE admin_ID = :id")->execute(['id' => $elim]);
@@ -72,13 +69,6 @@
 
         public function getNewTra(){
             return $this->_db->query('SELECT admin_ID FROM admin ORDER BY admin_ID DESC LIMIT 1')->fetchAll();
-        }
-
-        public function addSucursalTra($id, $sucursal){
-            $this->_db->prepare("INSERT INTO admin_sucursal(fk_sucursal,fk_admin) VALUES(:fs,:fa)")->execute([
-                "fs" => $sucursal,
-                "fa" => $id
-            ]);
         }
       
     }

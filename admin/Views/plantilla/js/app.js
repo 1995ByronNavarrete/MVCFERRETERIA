@@ -42,7 +42,7 @@ $(document).ready(function(){
         $("#precio").val(datos['product_precio']);
         $("#nomImgAnt").val(datos['product_foto']);
         $("#proveedorname").val(datos['provee_nombre']);
-        $("#img").attr("src", "http://localhost/MVCFERRETERIA/Views/plantilla/img/productos/" + datos['product_foto']);
+        $("#img").attr("src", "http://localhost/MVCFERRETERIA/admin/Views/plantilla/img/productos/" + datos['product_foto']);
         $("#catActual").val(datos['cat_product_nombre']);
     });
 
@@ -523,21 +523,21 @@ $(document).ready(function(){
         $('#idCat').val(datos['cat_product_ID']);
         $('#updCategoriaNom').val(datos['cat_product_nombre']);
         $('#updCategoriaDesc').val(datos['cat_product_descripcion']);
-        console.log(datos)
     });
 
     $(document).on("submit",".editarCategoria",function(e){
         e.preventDefault();
         
         if(Permiso){
+           
             let datos = {
                 "id" : $('#idCat').val(),
                 "nombre" :$('#updCategoriaNom').val(),
                 "descripcion" : $('#updCategoriaDesc').val()
             };
-
+            
             $.ajax({
-                url: base + "categoria/update",
+                url: base + "categoria/actualizar",
                 type: "POST",
                 data: datos,
                 success: function(response) {
@@ -545,7 +545,6 @@ $(document).ready(function(){
                     $("#CategoriaShowModal").modal('hide');
                     $(".newCategorias tbody").html(response);
                     swal.fire("Se ha modificado su categoria","Exitosamente!!","success");
-                
                 }
             });
         }else{

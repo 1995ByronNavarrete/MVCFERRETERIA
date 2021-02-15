@@ -81,7 +81,8 @@
 <script src="<?= PLANTILLA?>js/imprimir.js"></script>
 
 <script src="<?= PLANTILLA?>js/jquery.validate.min.js"></script>
-<script src="<?= PLANTILLA?>js/validaciones.js" type="module"></script>
+<script src="<?= PLANTILLA?>js/validaciones.js" type="module"></script>ç
+<script src="<?= PLANTILLA?>js/sucursalSeleccion.js" type="module"></script>
 
 
 

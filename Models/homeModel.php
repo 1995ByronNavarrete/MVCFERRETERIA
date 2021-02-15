@@ -29,4 +29,12 @@
                 return $product->fetchAll();
             }
         }
+
+        public function getSucursalA(){
+            return $this->_db->query("SELECT * FROM sucursal")->fetchAll();
+        }
+
+        public function getSucuralUnica(){
+            return $this->_db->query("SELECT * FROM sucursal WHERE activo = 1")->fetch();
+        }
     }

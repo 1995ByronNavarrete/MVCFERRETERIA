@@ -14,6 +14,11 @@
             $this->_view->renderizar("index");
         }
 
+        public function getSucursalActual(){
+            $sucursales = $this->homeModel->getSucursalA();
+            echo json_encode($sucursales);
+        }
+
         public function generarProductos(){
             $template = '';
             $datos = $this->homeModel->get(true);
@@ -57,5 +62,9 @@
            }
 
            return $tem;
+        }
+
+        public function getSuc(){
+            echo json_encode($this->homeModel->getSucuralUnica());
         }
     }

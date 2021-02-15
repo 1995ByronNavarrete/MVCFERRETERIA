@@ -42,8 +42,8 @@
 					<div class="col-sm-6">
 						<div class="info_contacto">
 							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> +505 5874-5142</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> email@gmail.com</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i> +505 <span id="telefonoSucursal"></span></a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> <span id="correoSucursal"></span></a></li>
 								<?php if(Accesos::getDatos('acceso')):?>
 								<li><a href="<?=BASE_URL?>login/salir"><i class="fa fa-door-closed"></i> Cerrar Sesion</a></li>
 								<?php endif; ?>
@@ -63,6 +63,17 @@
 				</div>
 			</div>
 		</div><!--/header_top-->
+
+		<div class="row container" style="margin:auto">
+				<div class="col-sm-12 col-sm-12 col-md-12 col-lg-12"><h4 style="margin-left:15px"><b>Seleccione la Sucursal:</b></h4></div>
+				<div class="col-sm-12 col-sm-12 col-md-12 col-lg-12">
+				<nav aria-label="breadcrumb">
+				<ol class="breadcrumb" id="sucursalMostrar">
+					<
+				</ol>
+			</nav>
+				</div>
+			</div>
 		
         <div class="header-middle"><!--header-middle-->
 			<div class="container">

@@ -34,4 +34,3 @@ export function validacionCadena(input,id,metodo,tipo,obj){
        else obj[tipo] = true;
    }) 
  }
- 

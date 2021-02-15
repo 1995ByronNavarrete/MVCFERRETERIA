@@ -36,6 +36,8 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
     <input type="hidden" value="<?= Accesos::getDatos('rol')?>" id="rolAcceso">
+    <input type="hidden" value="<?= BASE_URL?>" id="base">
+    
     <?php include "sidebar.php"; ?>
 
     <!-- Content Wrapper -->

@@ -41,12 +41,13 @@
             return $fila->fetchAll();
         }
 
-        public function updCat($d){
-            $this->_db->prepare("UPDATE FROM categorias_productos SET cat_product_nombre = :nom, cat_product_descripcion = :des WHERE cat_product_ID = :id")->execute(array(
+        public function actualizarCat($d){
+            $this->_db->prepare("UPDATE categorias_productos SET cat_product_nombre=:nom, cat_product_descripcion=:des WHERE cat_product_ID = :id")->execute(array(
                 "id" => $d['id'],
                 "nom" => $d['nombre'],
                 "des" => $d['descripcion']
             ));
+            
         }
 
         public function getAllCat(){

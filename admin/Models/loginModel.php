@@ -16,11 +16,10 @@
         }
 
         public function getUsuario($use, $suc){
-            $user = $this->_db->prepare("SELECT a.*,r.*
-            FROM admin AS a INNER JOIN admin_sucursal AS ad ON a.admin_ID = ad.fk_admin
-                    INNER JOIN sucursal AS s ON s.sucursal_ID = ad.fk_sucursal
-                    INNER JOIN roles AS r ON a.roles_rol_ID = r.rol_ID
-            WHERE	s.sucursal_ID = :suc AND admin_usuario = :user");
+            $user = $this->_db->prepare("SELECT a.*,r.*,s.*
+            FROM admin AS a INNER JOIN roles AS r ON a.roles_rol_ID = r.rol_ID
+                    INNER JOIN sucursal AS s ON a.sucursal_sucursal_ID = s.sucursal_ID 
+            WHERE	a.sucursal_sucursal_ID = :suc AND a.admin_usuario = :user");
 
             $user->execute([
                 "suc" => $suc,
