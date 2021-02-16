@@ -39,7 +39,7 @@
 		<div class="header_top"><!--header_top-->
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="info_contacto">
 							<ul class="nav nav-pills">
 								<li><a href="#"><i class="fa fa-phone"></i> +505 <span id="telefonoSucursal"></span></a></li>
@@ -50,7 +50,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="social-icons pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="#" class="text-white"><i class="fab fa-facebook"></i></a></li>
@@ -65,41 +65,36 @@
 		</div><!--/header_top-->
 
 		<div class="row container" style="margin:auto">
-				<div class="col-sm-12 col-sm-12 col-md-12 col-lg-12"><h4 style="margin-left:15px"><b>Seleccione la Sucursal:</b></h4></div>
-				<div class="col-sm-12 col-sm-12 col-md-12 col-lg-12">
-				<nav aria-label="breadcrumb">
-				<ol class="breadcrumb" id="sucursalMostrar">
-					<
-				</ol>
-			</nav>
-				</div>
-			</div>
-		
-        <div class="header-middle"><!--header-middle-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="pull-left">
-							<a href="<?=BASE_URL?>home"><img src="<?= PLANTILLA?>/img/productos/logo.png" alt="" /></a>
+				<div class="col-md-3 col-lg-4">
+					<div class="header-middle"><!--header-middle-->
+						<div class="container">
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="pull-left">
+										<a href="<?=BASE_URL?>home"><img src="<?= PLANTILLA?>/img/logo/logo.png" alt="" style="width:100px"/>
+											<span id="nameSucursal"></span>
+										</a>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-8">
-						<div class="menu_top pull-right">
-							<ul class="nav navbar-nav">
-								<li id="proformaOcultar">
-									<a href="#" class="proformaToggle">
-										<span class="fa fa-book-reader"></span> Proforma <span class="badge badge-primary cant">0</span>
-									</a>
-								</li>
-								<?php if(!Accesos::getDatos('acceso')):?>
-									<li><a href="<?=BASE_URL?>login"><i class="fa fa-user"></i> Login</a></li>
-								<?php endif;?>
-							</ul>
-						</div>
-					</div>
+					</div><!--/header-middle-->
 				</div>
-			</div>
-		</div><!--/header-middle-->
+				<div class="col-md-7 col-lg-7" style="display:flex;padding-top:48px">
+					<h4 style="margin-left:15px"><b>Seleccione la Sucursal:</b></h4>
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb" id="sucursalMostrar">
+							
+						</ol>
+					</nav>
+				</div>
+				<div class="col-md-1 col-lg-1" >
+				<?php if(!Accesos::getDatos('acceso')):?>
+					<div class="text-right" style="padding-top:45px"><a href="<?=BASE_URL?>login"><i class="fa fa-user"></i> Login</a></div>
+				<?php endif;?>
+				</div>
+				
+		</div>
 
 	<div class="container Mostraocultar" style="box-shadow: 1px 1px 10px #cacaca;display:none">
         <div class="row">
@@ -123,7 +118,7 @@
 		
 
         <div class="header-bottom"><!--header-bottom-->
-			<div class="container">
+			<div class="container" style="border-bottom: 1px solid #ccc">
 				<div class="row">
 					<div class="col-sm-9">
 						<div class="navbar-header">
@@ -139,6 +134,11 @@
 								<li><a href="<?=BASE_URL?>home" class="active">Inicio</a></li>
 								<li><a href="<?=BASE_URL?>producto">Productos</a></li>								
 								<li><a href="<?=BASE_URL?>contacto">Contactanos</a></li>
+								<li id="proformaOcultar">
+									<a href="#" class="proformaToggle">
+										<span class="fa fa-book-reader"></span> Proforma <span class="badge badge-primary cant">0</span>
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -146,4 +146,3 @@
 			</div>
         </div><!--/header-bottom-->
 </header>
-

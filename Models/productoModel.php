@@ -44,7 +44,7 @@
 
         public function saveAll($datos){
             $datosFinales = json_encode($datos['imprimirPDF']);
-            $this->_db->prepare("INSERT INTO proforma(proforma_productos,fk_cliente) VALUES(:pro,:fk)")->execute(array(
+            $this->_db->prepare("INSERT INTO proformatemporal(proforma_productos,cliente_cliente_id) VALUES(:pro,:fk)")->execute(array(
                 "pro" => $datosFinales,
                 "fk" => $datos['clienteId']
             ));

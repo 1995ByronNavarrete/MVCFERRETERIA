@@ -23,6 +23,8 @@ const getActualSucursal =  function(){
             let sucursalActual = JSON.parse(response);
             $("#telefonoSucursal").html(sucursalActual['sucursal_telefono']);
             $("#correoSucursal").html(sucursalActual['sucursal_correo']);
+            $("#nameSucursal").html(sucursalActual['sucursal_nombre']);
+            $("#nameSucursal").css({"font-size":"20px","padding-left":"20px","color":"#000","font-weight":"bold"})
         }
     });
 }

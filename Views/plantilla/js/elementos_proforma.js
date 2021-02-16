@@ -190,7 +190,8 @@ function renderizarProforma(){
 
         let miNodo = document.createElement('li');
         miNodo.classList.add('list-group-item','text-right','mx-2','font-black');
-        miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0]['product_nombre']} - C$ ${miItem[0]['product_precio']}`;
+        miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0]['product_nombre']} - ${miItem[0]['product_descripcion']} 
+        - C$ ${miItem[0]['product_precio']}`;
 
          // Boton de borrar
          let miBoton = document.createElement('button');

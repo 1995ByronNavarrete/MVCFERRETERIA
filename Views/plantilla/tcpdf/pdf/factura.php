@@ -23,7 +23,7 @@ $idCliente = Accesos::getDatos('cliente')['cliente_id'];
 
 $facturaFinal = $conexion->prepare("SELECT s.*,c.*,p.*
 FROM sucursal AS s INNER JOIN cliente AS c ON s.sucursal_ID = c.fk_sucursal_cliente
-     INNER JOIN proforma AS p ON c.cliente_id = p.fk_cliente
+     INNER JOIN proformatemporal AS p ON c.cliente_id = p.cliente_cliente_id
 WHERE c.cliente_id = :id ORDER BY p.proforma_id DESC LIMIT 1");
 
 //IRFORMACION QUE SE TRAE DESDE LA BASE DE DATOS
@@ -114,12 +114,11 @@ $pdf->AddPage();
 
 // ---------------------------------------------------------
 $html ='
-	<h2 style="width:100%;display:block;color:#ccc; margin-top:10px; font-size: 25px">Proforma</h2>
 	<table style="margin-top:30px">
 		<tr>
-			<td style="width:150px"><img src="images/logo.png"></td>
+			<td style="width:220"><img src="images/logo.png" style="width:70px"><span style="font-size:15px;font-weight:bold">'.$datos['sucursal_nombre'].'</span></td>
 
-			<td style="background-color:white;">
+			<td style="background-color:white">
 				<div style="font-size:8.5px; text-align:right; line-height:15px">
 					
 					<br>
@@ -130,7 +129,7 @@ $html ='
 				</div>
 			</td>
 
-			<td style="background-color:white; width:140px">
+			<td style="background-color:white; width:140px;">
 				<div style="font-size:8.5px; text-align:right; line-height:15px;">
 					<br>
 					Teléfono: '.$datos['sucursal_telefono'].'
