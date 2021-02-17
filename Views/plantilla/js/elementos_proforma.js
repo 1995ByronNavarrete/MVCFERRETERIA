@@ -31,7 +31,7 @@ const getProductos = function(){
             
             productos.forEach((elem) => {
                 template += `
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
@@ -42,11 +42,11 @@ const getProductos = function(){
                             if(accesoSistema)
                                 template += `<button type="button" marcador="${elem['product_ID']}" class="btn btn-default add-a-proforma add"><i class="fa fa-shopping-cart"></i>Añadir a proforma</button>`;
                             else
-                            
-                            template += `<button type="button" class="btn btn-default add-a-proforma loginEntrar"><i class="fa fa-shopping-cart"></i>Añadir a proforma</button>`;
-                template += `    
+                                template += `<button type="button" class="btn btn-default add-a-proforma loginEntrar"><i class="fa fa-shopping-cart"></i>Añadir a proforma</button>`;
+                    template += `    
                             </div>
                         </div>
+
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">
                                 <li><a href="${base}producto/showProducto/${elem['product_ID']}"><i class="fa fa-plus-square"></i> Ver detalle de productos</a></li> 

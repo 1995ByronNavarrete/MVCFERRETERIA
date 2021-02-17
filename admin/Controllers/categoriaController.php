@@ -79,7 +79,7 @@ class categoriaController extends Controller{
                 <td>'.$f['cat_product_nombre'].'</td>
                 <td>'.$f['cat_product_descripcion'].'</td>
                 <td><button class="btn btn-info edtCat"  data-p=\''.$datos.'\' data-target="#CategoriaShowModal" data-toggle="modal"><i class="fa fa-pencil-alt"></i></button></td>
-                <td><button class="btn btn-danger"  data-i=\''.$datos.'\' data-d=\''.BASE_URL.'\'><i class="fa fa-trash-alt"></i></button></td>
+                <td><button class="btn btn-danger delCat"  data-del=\''.$datos.'\' data-d=\''.BASE_URL.'\'><i class="fa fa-trash-alt"></i></button></td>
             </tr>
             ';
         }
@@ -90,6 +90,11 @@ class categoriaController extends Controller{
     public function actualizar(){
         $this->catMod->actualizarCat($_POST);
 
+        echo $this->generarCategorias();
+    }
+
+    public function delete(){
+        $this->catMod->del($this->getTexto('id'));
         echo $this->generarCategorias();
     }
 }

@@ -84,7 +84,6 @@
 					<h4 style="margin-left:15px"><b>Seleccione la Sucursal:</b></h4>
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb" id="sucursalMostrar">
-							
 						</ol>
 					</nav>
 				</div>

@@ -53,4 +53,8 @@
         public function getAllCat(){
             return $this->_db->query("SELECT * FROM categorias_productos")->fetchAll();
         }
+
+        public function del($id){
+            $this->_db->prepare("DELETE FROM categorias_productos WHERE cat_product_ID = :id")->execute(["id" => $id]);
+        }
     }

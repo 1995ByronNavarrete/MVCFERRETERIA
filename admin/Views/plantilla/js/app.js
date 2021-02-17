@@ -552,6 +552,37 @@ $(document).ready(function(){
         }
     });
 
+    $(document).on("click", ".delCat", function(e){
+        let idDel = JSON.parse($(this).attr("data-del"));
+        if(Permiso){
+            Swal.fire({
+                 title: '¿Desea Eliminar la categoria?',
+                showDenyButton: true,
+                confirmButtonText: `Si`,
+                denyButtonText: `No`,
+            }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: base + "categoria/delete",
+                        type: "POST",
+                        data: {id: idDel.cat_product_ID},
+                        success: function(response){
+                            swal.fire('Se ha eliminado la Categoria','correctamente','success');
+                            $(".newCategorias tbody").html(response);
+                        }
+                    });
+                } else if (result.isDenied) {
+                    Swal.fire('No se realizo ninguna acción', '', 'info')
+                }
+            })
+        }else{
+            swal.fire(msjErrorPrivilegio.msj,msjErrorPrivilegio.err,'info');
+        }
+
+       
+    })
+
 });
 
 //Funcion para buscar coincidencia en los nombres de usuarios

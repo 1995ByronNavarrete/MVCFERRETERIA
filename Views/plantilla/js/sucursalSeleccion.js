@@ -5,9 +5,8 @@ const obtenerSucursal = function(){
         success: function(response){ 
             let template = '';
             let suc = JSON.parse(response);
-            console.log(suc)
             suc.forEach(e => {
-                    template += `<li class="breadcrumb-item"><a href="#" id="${e['sucursal_ID']}">${e['sucursal_nombre']}</a></li> `;
+                    template += `<li class="breadcrumb-item"><a href="#" class="sucCam" id="${e['sucursal_ID']}">${e['sucursal_nombre']}</a></li> `;
             })
             
             $("#sucursalMostrar").html(template);
@@ -28,6 +27,19 @@ const getActualSucursal =  function(){
         }
     });
 }
+
+$(document).on("click", ".sucCam", function(){
+    let idSuc = $(this).attr("id");
+
+    $.ajax({
+        url: base + "home/cambioSucursal",
+        type: "POST",
+        data:{idSuc},
+        success: function(){
+            location.href = "home";
+        }
+    })
+})
 
 obtenerSucursal();
 getActualSucursal();

@@ -37,4 +37,9 @@
         public function getSucuralUnica(){
             return $this->_db->query("SELECT * FROM sucursal WHERE activo = 1")->fetch();
         }
+
+        public function cambio($id){
+            $this->_db->query("UPDATE sucursal AS s SET s.activo = 0 WHERE s.activo = 1");
+            $this->_db->prepare("UPDATE sucursal AS s SET s.activo = 1 WHERE s.sucursal_ID = :id")->execute(['id' => $id]);
+        }
     }

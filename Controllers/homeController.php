@@ -67,4 +67,8 @@
         public function getSuc(){
             echo json_encode($this->homeModel->getSucuralUnica());
         }
+
+        public function cambioSucursal(){
+            $this->homeModel->cambio($this->getTexto('idSuc'));
+        }
     }
