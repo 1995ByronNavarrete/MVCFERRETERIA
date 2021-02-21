@@ -30,6 +30,8 @@
                     Accesos::setDatos('usuario',$usuario['admin_nombre']. " " . $usuario['admin_apellido']);
                     Accesos::setDatos('nameSucursal',$sucursal['sucursal_nombre']);
                     Accesos::setDatos('identificadorSuc',$sucursal['sucursal_ID']);
+                    Accesos::setDatos('allSuc',$sucursal);
+                    Accesos::setDatos('allUs',$usuario);
                     $this->redireccionar('home');
 
                 }else{

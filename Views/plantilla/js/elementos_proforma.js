@@ -31,13 +31,13 @@ const getProductos = function(){
             
             productos.forEach((elem) => {
                 template += `
-                <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <img src="${fotoAdmin}/productos/${elem['product_foto']}" alt="" />
                                 <h2>C$ ${elem['product_precio']}</h2>
-                                <p>${elem['product_descripcion']}</p>`;
+                                <p>${elem['product_descripcion'].substr(0,10)}...</p>`;
 
                             if(accesoSistema)
                                 template += `<button type="button" marcador="${elem['product_ID']}" class="btn btn-default add-a-proforma add"><i class="fa fa-shopping-cart"></i>Añadir a proforma</button>`;

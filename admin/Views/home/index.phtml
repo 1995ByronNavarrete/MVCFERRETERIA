@@ -1,7 +1,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h4 class="mb-0 text-gray-800">Panel de Administración</h4>
-        <input type="hidden" id="base" value="<?= BASE_URL?>">
     </div>
 
     <!-- Content Row -->
@@ -42,7 +41,7 @@
         </a>
 
         <!-- Earnings (Monthly) Card Example -->
-        <a class="col-xl-3 col-md-6 mb-4 text-decoration-none" href="<?=BASE_URL?>productos">
+        <a class="col-xl-3 col-md-6 mb-4 text-decoration-none" href="<?= BASE_URL ?>productos">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -52,7 +51,7 @@
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 pro">0</div>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="col-auto">
@@ -80,4 +79,73 @@
             </div>
         </a>
     </div>
-  
+
+    <div class="row">
+        <!-- Bar Chart -->
+        <div class="card shadow mb-4 col-md-6">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Ingresos Por Mes</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-bar">
+                    <canvas id="myBarChart"></canvas>
+                </div>
+                <hr>
+                <!-- Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file. -->
+            </div>
+        </div>
+
+        <!-- Donut Chart -->
+        <div class="col-md-5 offset-1">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Clientes con mayor compra</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-pie pt-4">
+                        <canvas id="myPieChart"></canvas>
+                    </div>
+                    <hr>
+                    <!-- Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file. -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Approach -->
+        <div class="card shadow mb-4 col-md-6">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Informacion de la Empresa</h6>
+            </div>
+            <div class="card-body  text-center">
+                <!-- logo -->
+                <img src="<?= PLANTILLA ?>img/logo/<?= Accesos::getDatos("allSuc")['logo'] ?>" alt="" class="w-25">
+                <ul class="list-unstyled p-2  text-left text-dark">
+                    <li class="my-2"><b>Nombre:</b> <?= Accesos::getDatos("allSuc")['sucursal_nombre'] ?></li>
+                    <li class="my-2"><b>Direccion:</b> <?= Accesos::getDatos("allSuc")['sucursal_direccion'] ?></li>
+                    <li class="my-2"><b>Telefono:</b> <?= Accesos::getDatos("allSuc")['sucursal_telefono'] ?></li>
+                    <li class="my-2"><b>Correo:</b> <?= Accesos::getDatos("allSuc")['sucursal_correo'] ?></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card shadow mb-4 col-md-5 offset-1">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Información del Cliente</h6>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled text-dark">
+                    <li class="my-3"><b>Identificador:</b> <?= Accesos::getDatos("allUs")['admin_ID'] ?></li>
+                    <li class="my-3"><b>Nombres:</b> <?= Accesos::getDatos("allUs")['admin_nombre'] ?></li>
+                    <li class="my-3"><b>Apellidos:</b> <?= Accesos::getDatos("allUs")['admin_apellido'] ?></li>
+                    <li class="my-3"><b>Dirección:</b> <?= Accesos::getDatos("allUs")['admin_direccion'] ?></li>
+                    <li class="my-3"><b>Telefono:</b> <?= Accesos::getDatos("allUs")['admin_telefono'] ?></li>
+                    <li class="my-3"><b>Correo:</b> <?= Accesos::getDatos("allUs")['admin_correo'] ?></li>
+                    <li class="my-3"><b>Rol:</b> <?= Accesos::getDatos("allUs")['rol_nombre'] ?></li>
+                </ul>
+            </div>
+        </div>
+    </div>

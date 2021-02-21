@@ -292,6 +292,13 @@
 <script src="<?= PLANTILLA ?>js/complementos.js"></script>
 
 
+<script src="<?= PLANTILLA ?>vendor/chart.js/Chart.min.js"></script>
+<script src="<?= PLANTILLA ?>js/demo/chart-bar-demo.js"></script>
+<script src="<?= PLANTILLA ?>js/demo/chart-pie-demo.js"></script>
+
+
+
+
 
 
 </body>

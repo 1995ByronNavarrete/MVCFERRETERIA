@@ -57,6 +57,11 @@
     <span>Trabajadores</span></a>
 </li>
 
+<li class="nav-item">
+  <a class="nav-link" href="<?= BASE_URL ?>sucursal">
+    <i class="fas fa-store"></i>
+    <span>Sucursales</span></a>
+</li>
 <!-- Nav Item - Utilities Collapse Menu -->
 <!-- <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">

@@ -71,21 +71,17 @@
             <div class="col-sm-3">
                 <div class="left-sidebar">
                     
-                    
                     <div class="brands_products"><!--brands_products-->
                         <h2>Categorias</h2>
                         <div class="brands-name">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
-                                <li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
+                                <?= $this->all ?>
+                                <!-- <li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
                                 <li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
                                 <li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
                                 <li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
                                 <li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
-                                <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
-
-                                
-
+                                <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li> -->
                             </ul>
                         </div>
                     </div><!--/brands_products-->
@@ -107,129 +103,10 @@
                 </div>
             </div>
             
-            <div class="col-sm-9 padding-right">
+            <div class="col-sm-9">
                 <div class="features_items"><!--productos-->
-                    <h2 class="title text-center">Productos</h2>
                         <?= $this->productos?>
                 </div><!--productos-->
-                
-                <div class="productos_nuevos"><!--Productos Nuevos-->
-                    <h2 class="title text-center">Productos Nuevos</h2>
-                    <div class="col-sm-12">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tshirt" data-toggle="tab">Herramientas</a></li>
-                            <li><a href="#blazers" data-toggle="tab">Electricidad</a></li>
-                            <li><a href="#sunglass" data-toggle="tab">Pintura</a></li>
-                            <li><a href="#kids" data-toggle="tab">Metales</a></li>
-                            <li><a href="#poloshirt" data-toggle="tab">Funtaneria</a></li>
-                        </ul>
-                    </div>
-                    <div class="tab-content">
-                        <div class="tab-pane fade active in" id="tshirt" >
-                            <?php
-                                for ($i=0; $i < 4; $i++) { 
-                                    echo '<div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="'.PLANTILLA.'img/productos/635.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <a href="#" class="btn btn-default add-a-proforma"><i class="fa fa-shopping-cart"></i>Añadir a proforma</a>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>';
-                                }
-                            ?>
-                        </div>
-                        
-                        <div class="tab-pane fade" id="blazers" >
-                            <?php
-                                
-                                for ($i=0; $i < 4; $i++) { 
-                                    echo '<div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="assets/img/163.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <a href="#" class="btn btn-default add-a-proforma"><i class="fa fa-shopping-cart"></i>Añadir a proforma</a>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>';
-                                }
-                            ?>
-                        </div>
-                        
-                        <div class="tab-pane fade" id="sunglass" >
-                            <?php
-                                for ($i=0; $i < 4; $i++) { 
-                                    echo '<div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="assets/img/635.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <a href="#" class="btn btn-default add-a-proforma"><i class="fa fa-shopping-cart"></i>Añadir a proforma</a>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>';
-                                }
-                            ?>					
-                        </div>
-                        
-                        <div class="tab-pane fade" id="kids" >
-                            <?php
-                                for ($i=0; $i < 4; $i++) { 
-                                    echo '<div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="assets/img/163.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <a href="#" class="btn btn-default add-a-proforma"><i class="fa fa-shopping-cart"></i>Añadir a proforma</a>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>';
-                                }
-                            ?>							
-                        </div>
-                        
-                        <div class="tab-pane fade" id="poloshirt" >
-                        <?php
-                                for ($i=0; $i < 4; $i++) { 
-                                    echo '<div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="assets/img/635.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <a href="#" class="btn btn-default add-a-proforma"><i class="fa fa-shopping-cart"></i>Añadir a proforma</a>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>';
-                                }
-                            ?>
-                        </div>
-                    </div>
-                </div><!--/category-tab-->
-                
-
-                
             </div>
         </div>
     </div>
