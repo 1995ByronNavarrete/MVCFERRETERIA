@@ -33,7 +33,6 @@ class categoriaController extends Controller{
                         <h6><b>Nombre: </b>'.$prod['product_nombre'].'</h6>
                         <h6><b>Descripcion: </b>'. substr($prod['product_descripcion'],0,8) . "..." .'</h6>
                         <h6><b>Precio: </b> C$ '.$prod['product_precio'].'</h6>
-                        <button class="btn btn-info"><span class="fa fa-eye"></span> ver</button>
                     </div>
                 </div>
             ';

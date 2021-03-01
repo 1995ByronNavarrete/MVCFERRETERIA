@@ -49,6 +49,7 @@
                 "dir" => $datos['dirTra'],
                 "tel" => $datos['telTra']
             ]);
+            
             return $datos;
         }
 

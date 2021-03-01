@@ -13,9 +13,8 @@
             $this->redireccionar('login');
         }
 
-        // public function status(){
-
-        //     $datos = $this->homeModel->getStatus(2);
-        //     echo json_encode($datos);
-        // }
+        public function estadistica(){
+            $datos = $this->homeModel->getStatus(Accesos::getDatos("identificadorSuc"));
+            echo json_encode($datos);
+        }
     }

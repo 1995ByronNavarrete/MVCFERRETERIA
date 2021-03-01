@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="p-2 border-bottom d-block">Perfil</h3>
+    </div>
+
+    <div class="col-md-6 bg-white p-3 border-right">
+        <h4 class="d-block">Datos Generales</h4>
+        <p class="user-perfil">
+            <ul class="list-unstyled user-data-perfil">
+                <li><span>Nombres: </span><?=Accesos::getDatos("allUs")['admin_nombre']?></li>
+                <li><span>Apellidos: </span><?=Accesos::getDatos("allUs")['admin_apellido']?></li>
+                <li><span>Nombre Usuario: </span><?=Accesos::getDatos("allUs")['admin_usuario']?></li>
+                <li><span>Direccion: </span><?=Accesos::getDatos("allUs")['admin_direccion']?></li>
+                <li><span>Telefono: </span><?=Accesos::getDatos("allUs")['admin_telefono']?></li>
+                <li><span>Correo: </span><?=Accesos::getDatos("allUs")['admin_correo']?></li>
+            </ul>
+        </p>
+    </div>
+
+    <div class="col-md-6 bg-white p-3">
+        <h4 class="d-block text-center ">Editar perfil</h4>
+        <form class="row perfilUser">
+            <input type="hidden" name="idUsersUpdate" value="<?=Accesos::getDatos("allUs")['admin_ID']?>">
+            <input type="hidden" name="rolUsersUpdate" value="<?=Accesos::getDatos("allUs")['roles_rol_ID']?>">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nombreUser">Nombres</label>
+                    <input type="text" class="form-control" name="nombreuser" placeholder="Nombres" value="<?=Accesos::getDatos("allUs")['admin_nombre']?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="appelidoUser">Apellidos</label>
+                    <input type="text" class="form-control" name="apelldiouser" placeholder="Apellidos" value="<?=Accesos::getDatos("allUs")['admin_apellido']?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombreUUser">Nombre Usuario</label>
+                    <input type="text" class="form-control" name="nombresusuariouser" placeholder="Nombre Usuario" value="<?=Accesos::getDatos("allUs")['admin_usuario']?>" required>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="direccionUser">Direccion</label>
+                    <input type="text" class="form-control" name="direccionuser" placeholder="Direccion" value="<?=Accesos::getDatos("allUs")['admin_direccion']?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefonoUser">Telefono</label>
+                    <input type="text" class="form-control" name="telefonouser" placeholder="Telefono" value="<?=Accesos::getDatos("allUs")['admin_telefono']?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="correoUser">Correo</label>
+                    <input type="text" class="form-control" name="correouser" placeholder="Correo" value="<?=Accesos::getDatos("allUs")['admin_correo']?>" required>
+                </div>
+            </div>
+
+            <div class="col-md-12 p-3 m-auto border">
+                <input type="submit" value="Actualizar Perfil" class="btn btn-md btn-primary">
+            </div>
+        </form>
+    </div>
+</div>

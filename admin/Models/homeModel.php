@@ -6,8 +6,8 @@
         }
 
         public function getStatus($id){
-            $result =  $this->_db->prepare('CALL estados_generales()');
-            $result->execute();
-            return $result->fetch(PDO::FETCH_ASSOC);
+            $result =  $this->_db->prepare('CALL procedimiento_datos_generales(:id)');
+            $result->execute(['id' => $id]);
+            return $result->fetch();
         }
     }

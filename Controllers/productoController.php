@@ -32,7 +32,7 @@
                             <span>C$ '.$detalle['product_precio'].'</span>';
                 if(Accesos::getDatos('acceso')){
                     $template .= '
-                            <button type="button" class="btn btn-fefault proforma add"  marcador="'.$detalle['product_ID'].'">
+                            <button type="button" class="btn btn-default proforma add"  marcador="'.$detalle['product_ID'].'">
                                 <i class="fa fa-shopping-cart"></i>
                                 Añadir
                             </button>';

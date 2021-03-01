@@ -105,4 +105,24 @@
             echo $this->getUser();
         }
 
+        public function perfil(){
+            $this->_view->renderizar("perfil");
+        }
+
+        public function actualizarPerfil(){
+            $userData = array(
+                "idTra" => $this->getTexto("idUsersUpdate"),
+                "nomTra" => $this->getTexto("nombreuser"),
+                "apeTra" => $this->getTexto("apelldiouser"),
+                "nUsTra" => $this->getTexto("nombresusuariouser"),
+                "corTra" => $this->getTexto("correouser"),
+                "dirTra" => $this->getTexto("direccionuser"),
+                "telTra" => $this->getTexto("telefonouser"),
+                "rolTra" => $this->getTexto("rolUsersUpdate")
+            );
+            // echo json_encode($userData);
+            $datos = $this->mUsu->upd($userData);
+            echo json_encode($datos);
+        }
+
     }

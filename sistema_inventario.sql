@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 15-02-2021 a las 20:33:11
+-- Tiempo de generación: 01-03-2021 a las 23:18:59
 -- Versión del servidor: 10.5.4-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -20,6 +20,66 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sistema_inventario`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+DROP PROCEDURE IF EXISTS `procedimiento_datos_generales`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `procedimiento_datos_generales` (IN `id_suc` VARCHAR(10))  BEGIN
+	DECLARE cantidad int;    
+    DECLARE precio decimal;
+    
+	DECLARE valor_total decimal;
+    DECLARE precio_total INT;
+    
+    DECLARE total_producto int;
+    DECLARE total_cliente int;
+    DECLARE total_trabajadores int;
+    
+    DECLARE calculo_total CURSOR FOR 
+    	SELECT p.product_cantidad , p.product_precio 
+        FROM productos AS p INNER JOIN proveedores AS pr ON p.proveedores_provee_ID = pr.provee_ID
+		INNER JOIN sucursal AS s ON pr.sucursal_sucursal_ID = s.sucursal_ID
+		WHERE s.sucursal_ID = id_suc;
+    
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET @hecho = true;
+    
+    SET valor_total = 0;
+    SET precio_total = 0;
+    
+    OPEN calculo_total;
+    
+    loop1: LOOP
+    
+    	FETCH calculo_total INTO cantidad, precio;
+        
+        
+        IF @hecho THEN
+        	LEAVE loop1;
+        END IF;
+        
+        SET precio_total = cantidad * precio;
+        SET valor_total =  valor_total + precio_total;
+        
+    END LOOP loop1;
+    CLOSE calculo_total;
+    
+    SELECT COUNT(*)
+	FROM productos AS p INNER JOIN proveedores AS pr ON p.proveedores_provee_ID = pr.provee_ID
+	INNER JOIN sucursal AS s ON pr.sucursal_sucursal_ID = s.sucursal_ID
+	WHERE s.sucursal_ID = id_suc INTO total_producto;
+	SELECT COUNT(*)
+	FROM cliente AS c INNER JOIN sucursal AS s ON c.fk_sucursal_cliente = s.sucursal_ID
+	WHERE s.sucursal_ID = id_suc INTO total_cliente;
+	SELECT COUNT(*)
+	FROM admin AS a INNER JOIN sucursal AS s ON a.sucursal_sucursal_ID = s.sucursal_ID
+	WHERE s.sucursal_ID = id_suc && a.roles_rol_ID <> 1 INTO total_trabajadores;
+    
+    SELECT valor_total AS precio_t, total_producto, total_cliente, total_trabajadores;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -42,17 +102,17 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`admin_ID`),
   KEY `fk_admin_roles1_idx` (`roles_rol_ID`),
   KEY `fk_admin_sucursal1_idx` (`sucursal_sucursal_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `admin`
 --
 
 INSERT INTO `admin` (`admin_ID`, `admin_nombre`, `admin_apellido`, `admin_usuario`, `admin_direccion`, `admin_telefono`, `admin_correo`, `admin_pass`, `roles_rol_ID`, `sucursal_sucursal_ID`) VALUES
-(1, 'Byron', 'Navarrete', 'BayNavCan', 'Somoto', '+505 8736-4374', 'navarretebay74@gmail.com', '$2y$10$MFnUkg8FHvdweL8VFuq8..as2CLKQH9HVnDNKVapUIlfv8.kiLcEe', 1, 1),
-(2, 'Angel', 'Navarrete', 'AngNavCan', 'Somoto', '+505 8765-4321', 'idashlevel@gmail.com', '$2y$10$EDORcOWofk2Rbn024jcgROuPypIYc6BJKFAapq.ln5I3Frrt2CHza', 1, 1),
-(3, 'Kevin', 'Jimenez', 'KevJimMen', 'Somoto', '+505 8767-5421', 'KevinJimenez@gmail.com', '$2y$10$KltfPwB.qQDV5FVEWnn14epIADSgoZ.RW821QZIfZu1.dmczmI8du', 2, 1),
-(4, 'mitch', 'lovo', 'mitchlovo', 'ocotal', '+505 5856-9253', 'mitch@gmail.com', '$2y$10$HyCZJy.gaPfdM.H8d6dZ2eog5jm.RnN/jECoy7tFgHuDj4Mwkbj6u', 2, 1);
+(1, 'Byron Antonio', 'Navarrete Cañada', 'BayNavCan', 'Somoto - Madriz', '+505 8736-4374', 'navarretebay74@gmail.com', '$2y$10$MFnUkg8FHvdweL8VFuq8..as2CLKQH9HVnDNKVapUIlfv8.kiLcEe', 1, 1),
+(2, 'Angel', 'Navarrete', 'AngNavCan', 'Somoto', '+505 8765-4321', 'idashlevel@gmail.com', '$2y$10$EDORcOWofk2Rbn024jcgROuPypIYc6BJKFAapq.ln5I3Frrt2CHza', 1, 2),
+(6, 'Sait', 'Navarrete', 'SaitNavCan', 'Somoto', '+505 8765-4321', 'sait@gmail.com', '$2y$10$qUOm6i.rJ6rTF63HieikzOLRfDWX8blI8G9qhy.kPQZs53vZ7M1fO', 2, 1),
+(7, 'Kevin', 'Jimenez', 'KevJim', 'Somoto', '+505 8765-4321', 'KevinJimenez@gmail.com', '$2y$10$YRZ.zvysRa5lMk5qP3pkjOhDR57gImhvBgslLBk6VKPvN7z6hTkYy', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -64,25 +124,28 @@ DROP TABLE IF EXISTS `categorias_productos`;
 CREATE TABLE IF NOT EXISTS `categorias_productos` (
   `cat_product_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID de la categia del producto',
   `cat_product_nombre` varchar(45) NOT NULL COMMENT 'nombre de la categoria del producto',
-  `cat_product_descripcion` varchar(45) NOT NULL COMMENT 'descripcion de la categoria del producto',
+  `cat_product_descripcion` varchar(45) DEFAULT NULL COMMENT 'descripcion de la categoria del producto',
   PRIMARY KEY (`cat_product_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `categorias_productos`
 --
 
 INSERT INTO `categorias_productos` (`cat_product_ID`, `cat_product_nombre`, `cat_product_descripcion`) VALUES
-(1, 'Madera', 'todo tipo de madera'),
-(2, 'Metales', 'herramientas y otros'),
-(3, 'Pintura', 'Todo en pintura de aceite y de agua'),
-(5, 'Fontaneria', 'Todo en tuberias'),
-(6, 'Otros', 'Otros'),
-(10, 'Herramientas', 'todo tipo de herramientas'),
-(11, 'Herreria', 'Todo en Herreria'),
-(12, 'Fontaneria', 'Todo en tuberias'),
-(13, 'Fontaneria', 'Todo en tuberias'),
-(14, 'Pintura', 'Asesoria');
+(15, 'Construcción', ''),
+(16, 'Madera', ''),
+(17, 'Electricidad', ''),
+(18, 'Herramientas Baño y fontanería', ''),
+(19, 'Cocina', ''),
+(20, 'Jardín', ''),
+(21, 'Ferretería', ''),
+(22, 'Pintura', ''),
+(23, 'Decoración', ''),
+(24, 'Mobiliario y ordenación', ''),
+(25, 'Climatización', ''),
+(26, 'Herramientas', NULL),
+(35, 'Otros', '');
 
 -- --------------------------------------------------------
 
@@ -136,17 +199,27 @@ CREATE TABLE IF NOT EXISTS `productos` (
   KEY `fk_productos_categorias_productos_idx` (`categorias_productos_cat_product_ID`),
   KEY `fk_productos_unidad_medida1_idx` (`unidad_medida_unidad_medida_id`),
   KEY `fk_productos_proveedores1_idx` (`proveedores_provee_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
 INSERT INTO `productos` (`product_ID`, `product_nombre`, `product_cantidad`, `product_precio`, `product_descripcion`, `product_foto`, `product_marca`, `categorias_productos_cat_product_ID`, `unidad_medida_unidad_medida_id`, `proveedores_provee_ID`) VALUES
-(1, 'Martillo', 100, '200.00', 'Martillo truper de acero', '823de_69.jpeg', '', 10, 1, 1),
-(3, 'Martillo', 10, '100.00', 'martillo para ceramica', '8541._234.jpeg', '', 10, 1, 3),
-(4, 'Cierra', 20, '500.00', 'Cierra para madera marca truper', '2111._631.jpeg', '', 6, 1, 1),
-(5, 'Clavos de Acero', 100, '15.00', 'Clavos de Acero de 1 pulgada', '1063._492.jpeg', '', 2, 1, 1);
+(11, 'Martillo', 10, '200.00', 'Martillo de 16 onzas', '73721_597.jpeg', NULL, 26, 4, 1),
+(12, 'Clavos 4 pul', 100, '15.00', 'Acindar clavos punta paris 4 pulgadas', '431un_875.png', NULL, 21, 6, 1),
+(13, 'Sierra Circula', 20, '1200.00', 'Makita - HS7600 sierra circular 7-1/4 pulgadas', '50871_90.jpeg', NULL, 26, 4, 1),
+(14, 'Barra', 30, '800.00', 'Barra Truper 7/8X4&#039;10753', '283HE_621.jpeg', NULL, 26, 4, 1),
+(15, 'Extension', 30, '600.00', 'CABLE DE EXTENSIÓN PARA EXTERIORES DE 7,6 M (25 PIES)', '463un_673.jpeg', NULL, 17, 4, 1),
+(16, 'Extensión Múltiple', 50, '450.00', 'Enchufe De Extensión Y Cable De Extensión De Múltiples', '189Hc_895.jpeg', NULL, 17, 4, 1),
+(17, 'Mazo', 40, '300.00', 'Mazo,Peso de la Cabeza 16 oz.', '5232Z_239.jpeg', NULL, 26, 4, 1),
+(18, 'Zinc', 50, '250.00', 'LAMINA DE ZINC ONDULADO', '86b3_16.png', NULL, 15, 4, 1),
+(19, 'Puerta de Metal', 30, '1300.00', 'Puerta de Metal Super Briko ', '38340_664.jpeg', NULL, 15, 4, 1),
+(20, 'Ventana Francesa', 35, '1400.00', 'Ventana francesa blanca de pvc de 60 x 60 cm', '712ve_305.jpeg', NULL, 15, 4, 1),
+(21, 'Escalera', 20, '700.00', 'Escaleras de aluminio simple Aries', '249P1_221.jpeg', NULL, 26, 4, 1),
+(22, 'Lámpara', 100, '100.00', 'Lámpara fluorescente', '18526_211.jpeg', NULL, 17, 4, 1),
+(23, 'Taladro', 10, '1500.00', 'TALADRO/ATORNILLADOR DEWALT DE 1/2 PULGADA', '20860_314.jpeg', NULL, 26, 4, 1),
+(25, 'Cemento', 20, '300.00', 'Cemento de buena calidad', '715Ce_83.jpeg', NULL, 15, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -158,7 +231,7 @@ DROP TABLE IF EXISTS `proforma`;
 CREATE TABLE IF NOT EXISTS `proforma` (
   `proforma_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `proforma_productos` text COLLATE utf8_spanish_ci NOT NULL,
-  `proforma_estado` tinyint(1) NOT NULL DEFAULT 0,
+  `proforma_estado` tinyint(1) DEFAULT 0,
   `cliente_cliente_id` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`proforma_ID`),
   KEY `fk_proforma_cliente_idx` (`cliente_cliente_id`)
@@ -177,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `proformatemporal` (
   `cliente_cliente_id` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`proforma_id`),
   KEY `fk_proformaTemporal_cliente1_idx` (`cliente_cliente_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -194,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   `sucursal_sucursal_ID` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`provee_ID`),
   KEY `fk_proveedores_sucursal1_idx` (`sucursal_sucursal_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `proveedores`
@@ -202,7 +275,8 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
 
 INSERT INTO `proveedores` (`provee_ID`, `provee_nombre`, `provee_direccion`, `provee_telefono`, `sucursal_sucursal_ID`) VALUES
 (1, 'LujoMax', 'Ocotal', '87675468', 1),
-(3, 'FarmaCox', 'Ocotal', '87654214', 2);
+(3, 'FarmaCox', 'Ocotal', '87654214', 2),
+(7, 'EduCax', 'Somoto', '87364374', 1);
 
 -- --------------------------------------------------------
 
@@ -238,7 +312,7 @@ CREATE TABLE IF NOT EXISTS `servicio` (
   `ser_descripcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ser_img` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
   PRIMARY KEY (`ser_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `servicio`
@@ -246,7 +320,6 @@ CREATE TABLE IF NOT EXISTS `servicio` (
 
 INSERT INTO `servicio` (`ser_id`, `ser_nombre`, `ser_descripcion`, `ser_img`) VALUES
 (3, 'Fontanería', 'Asesoría en instalación de tuberia', 'sin foto'),
-(5, 'Entrega a domicilio', 'Se le hace la entrega del producto hasta su hogar', 'sin foto'),
 (6, 'Carpintería', 'Asesoría', 'sin foto');
 
 -- --------------------------------------------------------
@@ -269,7 +342,6 @@ CREATE TABLE IF NOT EXISTS `servicio_sucursal` (
 
 INSERT INTO `servicio_sucursal` (`servicio_fk`, `sucursal_fk`) VALUES
 (3, 1),
-(5, 2),
 (6, 1);
 
 -- --------------------------------------------------------
@@ -286,16 +358,17 @@ CREATE TABLE IF NOT EXISTS `sucursal` (
   `sucursal_correo` varchar(100) NOT NULL,
   `sucursal_direccion` varchar(255) DEFAULT NULL,
   `activo` tinyint(4) DEFAULT 0,
+  `logo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`sucursal_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `sucursal`
 --
 
-INSERT INTO `sucursal` (`sucursal_ID`, `sucursal_nombre`, `sucursal_telefono`, `sucursal_correo`, `sucursal_direccion`, `activo`) VALUES
-(1, 'Ferreteria San Luis', '87654321', 'SanLuis@gmail.com', 'Somoto, de enitel 1 C. al Norte', 1),
-(2, 'Ferreteria Divino niño', '87654321', 'Divina@gmail.com', 'Ocotal', 0);
+INSERT INTO `sucursal` (`sucursal_ID`, `sucursal_nombre`, `sucursal_telefono`, `sucursal_correo`, `sucursal_direccion`, `activo`, `logo`) VALUES
+(1, 'Ferreteria San Luis', '87654321', 'SanLuis@gmail.com', 'Somoto, de enitel 1 C. al Norte', 1, 'logo.png'),
+(2, 'Ferreteria Divino niño', '87654321', 'Divina@gmail.com', 'Ocotal', 0, 'logo.png');
 
 -- --------------------------------------------------------
 
@@ -310,15 +383,20 @@ CREATE TABLE IF NOT EXISTS `unidad_medida` (
   `unidad_medida_nombre` varchar(45) NOT NULL,
   `unidad_medida_abreviatura` varchar(10) NOT NULL,
   PRIMARY KEY (`unidad_medida_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `unidad_medida`
 --
 
 INSERT INTO `unidad_medida` (`unidad_medida_id`, `unidad_medida_tipo`, `unidad_medida_nombre`, `unidad_medida_abreviatura`) VALUES
-(1, 'Unidad', 'Unidad', 'und'),
-(2, 'Metros', 'Metros', 'mts');
+(3, 'Metro', 'metro', 'mts'),
+(4, 'Unidad', 'unidad', 'und'),
+(5, 'Galon', 'galon', 'gal'),
+(6, 'Libra', 'libra', 'lb'),
+(7, 'Pliego', 'pliego', 'plg'),
+(8, 'Lamina', 'lamina', 'lmn'),
+(9, 'Rollo', 'rollo', 'roll');
 
 --
 -- Restricciones para tablas volcadas

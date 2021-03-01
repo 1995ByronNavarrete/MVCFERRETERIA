@@ -5,8 +5,9 @@
 
         <div class="row">
           <div class="col-md-4">
-            <form class="bg-white shadow p-2" id="addSucursal">
-              <h5 class="border-bottom p-2">Agregar Sucursal</h5>
+            <form class="bg-white shadow p-2" id="sucursalForm">
+              <h5 class="border-bottom p-2" id="tituloSuc">Agregar Sucursal</h5>
+              <input type="hidden" name="id">
 
               <div class="form-group">
                 <label for="nombreSuc">Nombre</label>
@@ -42,13 +43,14 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered text-center sucursalCuerpo" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Id</th>
                       <th>Nombre</th>
                       <th>Direccion</th>
                       <th>Telefono</th>
+                      <th>Correo</th>
                       <th>Actualizar</th>
                       <th>Eliminar</th>
                     </tr>
@@ -59,12 +61,13 @@
                       <th>Nombre</th>
                       <th>Direccion</th>
                       <th>Telefono</th>
+                      <th>Correo</th>
                       <th>Actualizar</th>
                       <th>Eliminar</th>
                     </tr>
                   </tfoot>
                   <tbody>
-
+                      <?= $this->suc?>
                   </tbody>
                 </table>
               </div>

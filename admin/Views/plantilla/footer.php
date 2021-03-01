@@ -247,9 +247,52 @@
     </div>
   </div>
 
+  <!-- show Modal sucursal-->
+  <div class="modal fade" id="modalEditarSucursal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Sucursal</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form class="bg-white shadow p-2" id="sucursalFormEdit">
+              <input type="hidden" name="idSucE">
+
+              <div class="form-group">
+                <label for="nombreSuc">Nombre</label>
+                <input type="text" name="nombreSucE" id="nombreSuc" class="form-control" placeholder="Nombre" required>
+              </div>
+
+              <div class="form-group">
+                <label for="direccionSuc">Direccion</label>
+                <input type="text" name="direccionSucE" id="direccionSuc" class="form-control" placeholder="Direccion" required>
+              </div>
+
+              <div class="form-group">
+                <label for="telefonoSuc">Telefono</label>
+                <input type="text" name="telefonoSucE" id="telefonoSuc" class="form-control" placeholder="Telefono" required>
+              </div>
+
+              <div class="form-group">
+                <label for="correoSuc">Correo</label>
+                <input type="text" name="correoSucE" id="correoSuc" class="form-control" placeholder="Correo" required>
+              </div>
+
+
+              <div class="form-group">
+                <input type="submit" value="Agregar" class="btn-block btn btn-primary">
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 <?php endif; ?>
-
 
 <!-- Bootstrap core JavaScript-->
 <script src="<?= PLANTILLA ?>vendor/jquery/jquery.min.js"></script>
@@ -290,16 +333,6 @@
 <script src="<?= PLANTILLA ?>js/isotope.min.js"></script>
 
 <script src="<?= PLANTILLA ?>js/complementos.js"></script>
-
-
-<script src="<?= PLANTILLA ?>vendor/chart.js/Chart.min.js"></script>
-<script src="<?= PLANTILLA ?>js/demo/chart-bar-demo.js"></script>
-<script src="<?= PLANTILLA ?>js/demo/chart-pie-demo.js"></script>
-
-
-
-
-
 
 </body>
 

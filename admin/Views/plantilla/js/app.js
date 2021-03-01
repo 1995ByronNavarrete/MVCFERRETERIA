@@ -5,10 +5,27 @@ $(document).ready(function(){
     let Permiso = roles.includes(rol);
     let base = $("#base").val();
 
-    //Actualizar registros de la empresa cada segundo
-    // setInterval(function(){
-    //     getStatusPrincipal();
-    // },1000);
+     // Estadisticas generales de la empresa
+     const getStatusPrincipal = function(){
+        $.ajax({
+            url: base + 'home/estadistica',
+            type: 'GET',
+            success: function(response){
+                let datos = JSON.parse(response);
+                $('.tra').html(datos.total_trabajadores);
+                $('.cli').html(datos.total_cliente);
+                $('.pro').html(datos.total_producto);
+                $('.ven').html(datos.precio_t);
+            }
+        })
+    }
+
+    getStatusPrincipal();
+
+    // Actualizar registros de la empresa cada segundo
+    setInterval(function(){
+        getStatusPrincipal();
+    },1000);
     
     //ACCIONES DE LOGIN
 
@@ -583,6 +600,107 @@ $(document).ready(function(){
        
     })
 
+
+    // Acciones para las sucursales
+
+    $(document).on("click", ".delSuc", function(e){
+        
+        let id = JSON.parse($(this).attr("data-id"));
+        if(Permiso){
+            Swal.fire({
+                 title: '¿Desea Eliminar la categoria?',
+                showDenyButton: true,
+                confirmButtonText: `Si`,
+                denyButtonText: `No`,
+            }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {   
+                    $.ajax({
+                        url: base + "sucursal/deleteSucursal",
+                        type: "POST",
+                        data: {id : id.sucursal_ID},
+                        success: function(response){
+                            swal.fire('Se ha eliminado la Categoria','correctamente','success');
+                            $(".sucursalCuerpo tbody").html(response);
+                        }
+                    });
+                } else if (result.isDenied) {
+                    Swal.fire('No se realizo ninguna acción', '', 'info')
+                }
+            })
+        }else{
+            swal.fire(msjErrorPrivilegio.msj,msjErrorPrivilegio.err,'info');
+        }
+    });
+
+    $(document).on("click",".editSuc", function(e){
+        const $form = document.querySelector("#sucursalFormEdit");
+        let d = JSON.parse($(this).attr("data-p"));
+        $form.nombreSucE.value = d.sucursal_nombre;
+        $form.idSucE.value = d.sucursal_ID;
+        $form.correoSucE.value = d.sucursal_correo;
+        $form.direccionSucE.value = d.sucursal_direccion;
+        $form.telefonoSucE.value = d.sucursal_telefono;
+    });
+
+    $("#sucursalForm").on("submit",function(e){
+        e.preventDefault();
+
+        if(Permiso){
+            let datos = $("#sucursalForm").serialize();
+            
+            $.ajax({
+                url: base + 'sucursal/addSucursal',
+                type: 'POST',
+                data: datos,
+                success: function(response){
+                    swal.fire('Se ha agregado una nueva sucursal','Correctamente','success');
+                    $("#sucursalForm")[0].reset();
+                    $(".sucursalCuerpo tbody").html(response);
+                }
+            });
+        }else{
+            swal.fire(msjErrorPrivilegio.msj,msjErrorPrivilegio.err,'info');
+        }
+    })
+
+    $("#sucursalFormEdit").on("submit",function(e){
+        e.preventDefault();
+        
+        let datos = $("#sucursalFormEdit").serialize();
+        $.ajax({
+            url: base + 'sucursal/updSucursal',
+            type: 'POST',
+            data: datos,
+            success: function(response){
+                swal.fire('Se ha Actualizado la sucursal','Correctamente','success');
+                $("#sucursalFormEdit")[0].reset();
+                $("#modalEditarSucursal").modal("hide");
+                $(".sucursalCuerpo tbody").html(response);
+            }
+        });
+        
+    })
+
+    // Acciones del perfil
+    $(".perfilUser").on("submit",function(e){
+        e.preventDefault();
+        let datos = $(".perfilUser").serialize();
+
+        $.ajax({
+            url: base + "usuario/actualizarPerfil",
+            method: "POST",
+            data: datos,
+            success: function(res){
+                console.log(JSON.parse(res));
+                swal.fire("Para Realizar los cambios se cerrara la sesion","Obligatorio","info");
+                setTimeout(() =>{
+                    window.location.href = base + "login/salir";
+                },4000)
+                
+            }
+        });
+    });
 });
 
 //Funcion para buscar coincidencia en los nombres de usuarios
@@ -622,20 +740,3 @@ function BuscarCorreo(correo, base){
         }
     });
 }
-
-//Estadisticas generales de la empresa
-// function getStatusPrincipal(){
-//     let base = $('#base').val();
-
-//     $.ajax({
-//         url: base + 'home/status',
-//         type: 'GET',
-//         success: function(response){
-//             let datos = JSON.parse(response);
-//             $('.tra').html(datos.cant_trabajadores);
-//             $('.cli').html(datos.cant_clientes);
-//             $('.pro').html(datos.cant_productos);
-//             $('.ven').html(datos.ventas_hoy);
-//         }
-//     })
-// }

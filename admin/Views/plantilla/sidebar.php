@@ -62,6 +62,13 @@
     <i class="fas fa-store"></i>
     <span>Sucursales</span></a>
 </li>
+
+<li class="nav-item">
+  <a class="nav-link" href="<?= BASE_URL ?>cliente">
+    <i class="fas fa-users"></i>
+    <span>Clientes</span></a>
+</li>
+
 <!-- Nav Item - Utilities Collapse Menu -->
 <!-- <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">

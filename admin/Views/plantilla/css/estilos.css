@@ -66,3 +66,25 @@
     min-height: 100px;
     max-height: 100px;
 }
+/* Estilos del perfil */
+.user-perfil{
+    width: 100%;
+    height: auto;
+}
+
+.user-data-perfil{
+    width:inherit;
+    height: inherit;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+.user-data-perfil li{
+    padding: 1rem;
+}
+
+.user-data-perfil li span{
+    width:160px;
+    display: inline-block;
+    font-weight: bold;
+}
