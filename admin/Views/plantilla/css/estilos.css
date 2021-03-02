@@ -7,7 +7,7 @@
     background: #fff;
 }
 /* Estilos del login */
-.fondo-login{
+.container-login{
     background: rgb(100, 100, 100);
 }
 
@@ -87,4 +87,122 @@
     width:160px;
     display: inline-block;
     font-weight: bold;
+}
+
+/* CSS login */
+.titleLogin{
+    width: 100%;
+    font-size: 1.8rem;
+    color: rgb(15, 0, 153);
+}
+
+#form-login input,label{
+    font-size: 18px;
+}
+
+#form-login label{
+    font-weight: bold;
+    color: rgb(80, 80, 80);
+}
+
+#form-login input::placeholder{
+    font-family: sans-serif;
+}
+
+.titleLogin span{
+    font-size: 2.3rem;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: rgb(8, 0, 51);
+}
+
+
+/* Responsive Slider */
+.slider{
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.slider-slides{
+    position: relative;
+    height: 99.9vh;
+}
+
+.slider-slide{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+}
+
+.slider-slide img{
+    height: inherit;
+    width: inherit;
+    object-fit: cover;
+    object-position: 50% 0%;
+}
+.slider-slide section{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(29, 29, 29, 0.5);
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-slide section span{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.slider-slide section p{
+    font-size: 1.5rem;
+    box-sizing: border-box;
+    padding: 5px;
+    text-align: left;
+    width: 80%;
+    color: #fff;
+    
+}
+
+.slider-slide.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.slider-btns{
+    position: absolute;
+    width: 100%;
+    top: 45%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.slider a{
+    display: block;
+    width:4rem;
+    height: 4rem;
+    border-radius: 50%;
+    text-decoration: none;
+    opacity: .2;
+    font-size: 6rem;
+    color: rgb(255, 255, 255);
+    transition: all 0.3s ease;
+}
+
+.slider a:hover{
+    color: #4d4d4d
 }

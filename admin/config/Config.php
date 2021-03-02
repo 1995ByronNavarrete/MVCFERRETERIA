@@ -1,5 +1,4 @@
 <?php
-
 define("APP_NOMBRE","Sistema Inventario");
 define('BASE_URL','http://localhost/MVCFERRETERIA/admin/');
 define('DEFAULT_CONTROLLER','home');

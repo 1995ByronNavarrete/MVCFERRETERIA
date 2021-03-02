@@ -1,27 +1,70 @@
+<div class="container-fluid m-0 p-0 container-login min-vh-100 d-flex justify-content-center row">
+    <div class="col-md-9 m-0 p-0">
+        <div class="slider m-0 p-0">
+            <div class="slider-slides">
+                <div class="slider-slide active">
+                    <img src="<?= PLANTILLA?>img/login/1.jpg" alt="Tech">
+                    <section>
+                        <p>
+                            <span>L</span>orem ipsum dolor sit amet consectetur adipisicing elit.
+                            Expedita laborum, placeat atque quasi rem recusandae quas quia soluta esse harum.
+                        </p>
+                    </section>
+                </div>
 
-<div class="fondo-login min-vh-100 d-flex justify-content-center">
-        
-    <form action="" method="POST" id="form-login" class="form border w-25 h-25 my-auto p-5 bg-light shadow-lg rounded">
-        <h1 class="text-center mb-3 border-bottom p-2 font-weight-bold">Login</h1>
-        <input type="hidden" name="ingresar" value="1">
+                <div class="slider-slide">
+                    <img src="<?= PLANTILLA?>img/login/2.jpg" alt="Animals">
+                    <section>
+                        <p>
+                            <span>L</span>orem ipsum dolor sit amet consectetur adipisicing elit.
+                            Expedita laborum, placeat atque quasi rem recusandae quas quia soluta esse harum.
+                        </p>
+                    </section>
+                </div>
 
-        <div class="form-group">
-            <label for="password">Usuario</label>
-            <input type="text" name="usuario" id="usuario" class="my-1 form-control" required placeholder="Nombre de Usuario" autocomplete="off">
+                <div class="slider-slide">
+                    <img src="<?= PLANTILLA?>img/login/3.jpg" alt="Animals">
+                    <section>
+                        <p>
+                            <span>L</span>orem ipsum dolor sit amet consectetur adipisicing elit.
+                            Expedita laborum, placeat atque quasi rem recusandae quas quia soluta esse harum.
+                        </p>
+                    </section>
+                </div>
+            </div>
+            <div class="slider-btns">
+                <a class="prev" href="#">&laquo;</a>
+                <a class="next" href="#">&raquo;</a>
+            </div>
         </div>
+    </div>
 
-        <label for="sucursal">Sucursal</label>
-        <select name="sucursal" id="sucursal" class="form-control">
-            <?= $this->sucursal ?>
-        </select>
+    <div class="col-md-3 m-0 p-0">
+        <form action="" method="POST" id="form-login" class="form p-5 bg-light shadow-lg w-100 h-100 ">
+            <div class="titleLogin text-center mb-3 border-bottom p-2 font-weight-bold">
+                <span>L</span>ogin <span>F</span>erreteria
+            </div>
+            <input type="hidden" name="ingresar" value="1">
 
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="my-1 form-control" required placeholder="Contraseña">
-        </div>
+            <div class="form-group">
+                <label for="password">Usuario</label>
+                <input type="text" name="usuario" id="usuario" class="my-1 form-control" required placeholder="Nombre de Usuario" autocomplete="off">
+            </div>
 
-        <input type="submit" value="Login" class="btn btn-primary btn-block">
-        <?php if(isset($this->mensaje)) echo $this->mensaje; ?>
-    </form>
+            <label for="sucursal">Sucursal</label>
+            <select name="sucursal" id="sucursal" class="form-control">
+                <?= $this->sucursal ?>
+            </select>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="my-1 form-control" required placeholder="Contraseña">
+            </div>
+
+            <input type="submit" value="Login" class="btn btn-primary btn-block">
+            <?php if (isset($this->mensaje)) echo $this->mensaje; ?>
+
+        </form>
+    </div>
 
 </div>
