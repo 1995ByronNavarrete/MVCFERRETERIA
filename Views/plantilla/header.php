@@ -132,7 +132,7 @@
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="<?=BASE_URL?>home" class="active">Inicio</a></li>
 								<li><a href="<?=BASE_URL?>producto">Productos</a></li>								
-								<li><a href="<?=BASE_URL?>contacto">Contactanos</a></li>
+								<li><a href="<?=BASE_URL?>servicios">Servicios</a></li>
 								<li id="proformaOcultar">
 									<a href="#" class="proformaToggle">
 										<span class="fa fa-book-reader"></span> Proforma <span class="badge badge-primary cant">0</span>

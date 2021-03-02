@@ -65,4 +65,8 @@
             $this->serviciosModel->del($this->getTexto('id'));
             echo $this->generarServicios();
         }
+
+        public function cambiarImagen(){
+            var_dump($_FILES);
+        }
     }

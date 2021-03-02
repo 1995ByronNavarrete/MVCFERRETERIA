@@ -548,16 +548,20 @@ $(document).ready(function(){
       // Actualizar y mostra en el modal la informacion del servicio
       $(document).on('click','.editServicio',function(){
           let servicio = JSON.parse($(this).attr('data-servicio'));
+          let urlImg = base + "Views/plantilla/img/servicios/" +servicio.ser_img;
           $('#idSer').val(servicio.ser_id);
+          $('#img').val(servicio.ser_img);
           $('#updServicio').val(servicio.ser_nombre);
           $('#updDescripcionSer').val(servicio.ser_descripcion);
+          $('#imagen').attr("src",urlImg)
+         
       })
-  
+
       //Actualizar Servicio
     $('.editarServicio').on('submit',function(e){
           e.preventDefault();
         if(Permiso){
-           
+
             let datos = {
                 id:  $('#idSer').val(),
                 servicio: $('#updServicio').val(),

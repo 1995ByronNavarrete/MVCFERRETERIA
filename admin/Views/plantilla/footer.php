@@ -158,17 +158,19 @@
           </button>
         </div>
         <div class="modal-body">
-          <form class="form editarServicio">
-            <div class="form-group">
-              <input type="hidden" id="idSer">
-              <label for="updServicio">Servicio</label>
-              <input type="text" id="updServicio" class="form-control">
-            </div>
+          <form class="form editarServicio " enctype="multipart/form-data">
+            
+              <div class="form-group">
+                <input type="hidden" id="idSer">
+                <label for="updServicio">Servicio</label>
+                <input type="text" id="updServicio" class="form-control">
+              </div>
 
-            <div class="form-group">
-              <label for="descripcion">Descripcion</label>
-              <textarea name="updDescripcionSer" id="updDescripcionSer" class="form-control serDesc"></textarea>
-            </div>
+              <div class="form-group">
+                <label for="descripcion">Descripcion</label>
+                <textarea name="updDescripcionSer" id="updDescripcionSer" class="form-control serDesc"></textarea>
+              </div>
+           
             <div class="form-group">
               <input type="submit" value="Actualizar" class="btn btn-block btn-primary">
             </div>
@@ -216,8 +218,8 @@
     </div>
   </div>
 
-    <!-- show Modal categoria-->
-    <div class="modal fade" id="CategoriaShowModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- show Modal categoria-->
+  <div class="modal fade" id="CategoriaShowModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -258,34 +260,34 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="bg-white shadow p-2" id="sucursalFormEdit">
-              <input type="hidden" name="idSucE">
+          <form class="bg-white shadow p-2" id="sucursalFormEdit">
+            <input type="hidden" name="idSucE">
 
-              <div class="form-group">
-                <label for="nombreSuc">Nombre</label>
-                <input type="text" name="nombreSucE" id="nombreSuc" class="form-control" placeholder="Nombre" required>
-              </div>
+            <div class="form-group">
+              <label for="nombreSuc">Nombre</label>
+              <input type="text" name="nombreSucE" id="nombreSuc" class="form-control" placeholder="Nombre" required>
+            </div>
 
-              <div class="form-group">
-                <label for="direccionSuc">Direccion</label>
-                <input type="text" name="direccionSucE" id="direccionSuc" class="form-control" placeholder="Direccion" required>
-              </div>
+            <div class="form-group">
+              <label for="direccionSuc">Direccion</label>
+              <input type="text" name="direccionSucE" id="direccionSuc" class="form-control" placeholder="Direccion" required>
+            </div>
 
-              <div class="form-group">
-                <label for="telefonoSuc">Telefono</label>
-                <input type="text" name="telefonoSucE" id="telefonoSuc" class="form-control" placeholder="Telefono" required>
-              </div>
+            <div class="form-group">
+              <label for="telefonoSuc">Telefono</label>
+              <input type="text" name="telefonoSucE" id="telefonoSuc" class="form-control" placeholder="Telefono" required>
+            </div>
 
-              <div class="form-group">
-                <label for="correoSuc">Correo</label>
-                <input type="text" name="correoSucE" id="correoSuc" class="form-control" placeholder="Correo" required>
-              </div>
+            <div class="form-group">
+              <label for="correoSuc">Correo</label>
+              <input type="text" name="correoSucE" id="correoSuc" class="form-control" placeholder="Correo" required>
+            </div>
 
 
-              <div class="form-group">
-                <input type="submit" value="Agregar" class="btn-block btn btn-primary">
-              </div>
-            </form>
+            <div class="form-group">
+              <input type="submit" value="Agregar" class="btn-block btn btn-primary">
+            </div>
+          </form>
         </div>
       </div>
     </div>
